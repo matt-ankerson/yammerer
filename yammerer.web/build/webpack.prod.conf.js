@@ -83,6 +83,15 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
+    new webpack.ProvidePlugin({
+      // jquery
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      semantic: 'semantic-ui',
+      Semantic: 'semantic-ui',
+      'semantic-ui': 'semantic-ui'
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
