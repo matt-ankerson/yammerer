@@ -1,16 +1,27 @@
 <template>
   <div class="channel">
-    <h2>This is the channel view</h2>
-    <button class="ui button">yeah nah</button>
+    <h2>Yammerer</h2>
+    <message v-for="message in messages" :model="message" :key="message.id"></message>
   </div>
 </template>
 
 <script>
+import Message from './Message'
 export default {
   name: 'channel',
   data () {
     return {
+      messages: [{
+        content: 'first message',
+        replies: [{
+          content: 'first reply',
+          replies: []
+        }]
+      }]
     }
+  },
+  components: {
+    'message': Message
   }
 }
 </script>
