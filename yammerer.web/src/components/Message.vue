@@ -2,10 +2,10 @@
   <div class="comment">
     <a class="avatar">
       <!-- bind a html property to a computed value -->
-      <img v-bind:src="avatarImg">
+      <img v-bind:src="model.avatar">
     </a>
     <div class="content">
-      <a class="author">Unknown user</a>
+      <a class="author">{{model.author}}</a>
       <div class="metadata">
         <span class="date">{{model.time}}</span>
         <div class="rating">
@@ -17,36 +17,45 @@
         {{model.content}}
       </div>
       <div class="actions">
-        <a class="reply">Reply</a>
+        <a class="reply" v-bind:class="{active: showReplyForm}" v-on:click.stop="toggleReplyForm()">Reply</a>
         <a v-if="!liked" v-on:click.stop="addLike()" class="like">Like</a>
         <a v-else        v-on:click.stop="removeLike()" class="like active">You like this</a>
       </div>
-      <form class="ui reply form">
-        <div class="field">
-          <textarea></textarea>
-        </div>
-        <div class="ui primary submit labeled icon button">
-          <i class="icon edit"></i> Add Reply
-        </div>
-      </form>
     </div>
     <!-- conditional rendering with v-if -->
     <div v-if="hasReplies()" class="comments">
-      <message v-for="message in model.replies" :model="message" :key="message.id"></message>
+      <message v-for="message in model.replies" 
+                :model="message" 
+                :reply-as="replyAs" 
+                :reply-as-avatar="replyAsAvatar" 
+                :key="message.id"></message>
     </div>
+    <form v-if="showReplyForm" class="ui reply form">
+      <div class="field">
+        <textarea v-model="replyContent"></textarea>
+      </div>
+      <div class="ui primary labeled icon button" v-on:click.stop="addReply()">
+        <i class="icon edit"></i> Add Reply
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
+import helpers from '../helpers'
 export default {
   name: 'message',
   props: {
+    replyAs: String,
+    replyAsAvatar: String,
     model: Object
     // custom validator here? (to ensure object props exist)
   },
   data () {
     return {
-      liked: false
+      liked: false,
+      showReplyForm: false,
+      replyContent: ''
     }
   },
   // methods are evaluated every time they're invoked
@@ -62,18 +71,15 @@ export default {
     removeLike: function () {
       this.liked = false;
       this.model.likes--;
-    }
-  },
-  // computed props are methods which are evaluated ONCE, then cached for later.
-  computed: {
-    avatarImg: function () {
-      let avatars = [
-        'https://semantic-ui.com/images/avatar/small/elliot.jpg',
-        'https://semantic-ui.com/images/avatar/small/jenny.jpg',
-        'https://semantic-ui.com/images/avatar/small/joe.jpg',
-        'https://semantic-ui.com/images/avatar/small/matt.jpg'
-      ];
-      return avatars[Math.floor(Math.random() * avatars.length)];
+    },
+    toggleReplyForm: function () {
+      this.showReplyForm = !this.showReplyForm;
+      this.replyContent = '';
+    },
+    addReply: function () {
+      // Add a reply, pass in the authoring details.
+      this.model.replies.push(helpers.getNewMessage(this.replyAs, this.replyAsAvatar, this.replyContent));
+      this.toggleReplyForm();
     }
   }
 }
