@@ -1,7 +1,14 @@
 <template>
-  <div class="channel">
+  <div class="ui container">
     <h2>Yammerer</h2>
-    <message v-for="message in messages" :model="message" :key="message.id"></message>
+    <div class="ui centered grid">
+      <div class="ten wide column">
+        <div class="ui threaded comments">
+          <h3 class="ui dividing header">Discussion</h3>
+          <message v-for="message in messages" :model="message" :key="message.id"></message>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,9 +20,13 @@ export default {
     return {
       messages: [{
         content: 'first message',
+        likes: 2,
+        time: '2017-5-28 17:49:24',
         replies: [{
           content: 'first reply',
-          replies: []
+          likes: 0,
+          replies: [],
+          time: '2017-5-28 17:49:24'
         }]
       }]
     }
@@ -26,8 +37,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h1, h2 {
   font-weight: normal;
 }

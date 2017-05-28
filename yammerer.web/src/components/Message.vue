@@ -1,6 +1,39 @@
 <template>
-  <div class="message">
-    <p>{{model.content}}</p>
+  <div class="comment">
+    <a class="avatar">
+      <!-- bind a html property to a computed value -->
+      <img v-bind:src="avatarImg">
+    </a>
+    <div class="content">
+      <a class="author">Unknown user</a>
+      <div class="metadata">
+        <span class="date">{{model.time}}</span>
+        <div class="rating">
+          <i class="star icon"></i>
+          {{model.likes}} likes 
+        </div>
+      </div>
+      <div class="text">
+        {{model.content}}
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+        <a v-if="!liked" v-on:click.stop="addLike()" class="like">Like</a>
+        <a v-else        v-on:click.stop="removeLike()" class="like active">You like this</a>
+      </div>
+      <form class="ui reply form">
+        <div class="field">
+          <textarea></textarea>
+        </div>
+        <div class="ui primary submit labeled icon button">
+          <i class="icon edit"></i> Add Reply
+        </div>
+      </form>
+    </div>
+    <!-- conditional rendering with v-if -->
+    <div v-if="hasReplies()" class="comments">
+      <message v-for="message in model.replies" :model="message" :key="message.id"></message>
+    </div>
   </div>
 </template>
 
@@ -13,6 +46,34 @@ export default {
   },
   data () {
     return {
+      liked: false
+    }
+  },
+  // methods are evaluated every time they're invoked
+  methods: {
+    hasReplies: function () {
+      // short cicuit evaluation
+      return this.model.hasOwnProperty('replies') && this.model.replies.length > 0;
+    },
+    addLike: function () {
+      this.liked = true;
+      this.model.likes++;
+    },
+    removeLike: function () {
+      this.liked = false;
+      this.model.likes--;
+    }
+  },
+  // computed props are methods which are evaluated ONCE, then cached for later.
+  computed: {
+    avatarImg: function () {
+      let avatars = [
+        'https://semantic-ui.com/images/avatar/small/elliot.jpg',
+        'https://semantic-ui.com/images/avatar/small/jenny.jpg',
+        'https://semantic-ui.com/images/avatar/small/joe.jpg',
+        'https://semantic-ui.com/images/avatar/small/matt.jpg'
+      ];
+      return avatars[Math.floor(Math.random() * avatars.length)];
     }
   }
 }
@@ -20,21 +81,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
