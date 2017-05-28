@@ -47,7 +47,10 @@ export default {
       'https://semantic-ui.com/images/avatar/small/elliot.jpg',
       'https://semantic-ui.com/images/avatar/small/jenny.jpg',
       'https://semantic-ui.com/images/avatar/small/joe.jpg',
-      'https://semantic-ui.com/images/avatar/small/matt.jpg'
+      'https://semantic-ui.com/images/avatar/small/matt.jpg',
+      'https://semantic-ui.com/images/avatar/small/helen.jpg',
+      'https://semantic-ui.com/images/avatar/small/justen.jpg',
+      'https://semantic-ui.com/images/avatar/small/laura.jpg'
     ];
     return avatars[Math.floor(Math.random() * avatars.length)];
   }
