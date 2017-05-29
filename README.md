@@ -7,7 +7,7 @@ A Yammer imitation. Intended to demonstrate some dope & saucy Mongo, Node js, an
 ``` bash
 
 # navigate to web project
-cd ./yammerer.web
+cd ./src/yammerer.web
 
 # install dependencies
 npm install
