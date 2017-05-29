@@ -30,7 +30,7 @@
           </div>
           <div class="ui divider"></div>
 
-          <form v-if="showMessageForm" class="ui reply form">
+          <form v-if="showMessageForm" class="ui reply form" id="messageForm">
             <div class="field">
               <textarea v-model="newMessageContent" name="newMessageContent"></textarea>
             </div>
@@ -91,12 +91,21 @@ export default {
   // methods are evaluated every time they're invoked
   methods: {
     addMessage: function () {
-      let messageForm = $('.ui.form');
+      // Form validation with semantic UI
+      let messageForm = $('#messageForm');
       messageForm.form({
+        inline: true,
         fields: {
-          newMessageContent: 'empty'
+          newMessageContent: {
+            identifier: 'newMessageContent', // <-- binds to id, name or data-validate
+            rules: [{
+              type: 'empty',
+              prompt: 'Please enter your message'
+            }]
+          }
         }
-      }).form('validate form');
+      });
+      messageForm.form('validate form');
 
       if (messageForm.form('is valid')) {
         // Add a message to the beginning of array, pass in the authoring details.

@@ -31,9 +31,9 @@
                 :reply-as-avatar="replyAsAvatar" 
                 :key="message.id"></message>
     </div>
-    <form v-if="showReplyForm" class="ui reply form">
+    <form v-if="showReplyForm" class="ui reply form" v-bind:id="replyFormIdentifier">
       <div class="field">
-        <textarea v-model="replyContent" class="ui focus"></textarea>
+        <textarea v-model="replyContent" class="ui focus" name="replyContent"></textarea>
       </div>
       <div class="ui primary labeled icon button" v-on:click.stop="addReply()">
         <i class="icon edit"></i> Add Reply
@@ -47,6 +47,7 @@
 
 <script>
 import helpers from '../helpers'
+import $ from 'jquery'
 export default {
   name: 'message',
   props: {
@@ -60,6 +61,11 @@ export default {
       liked: false,
       showReplyForm: false,
       replyContent: ''
+    }
+  },
+  computed: {
+    replyFormIdentifier: function () {
+      return helpers.guid();
     }
   },
   methods: {
@@ -80,9 +86,27 @@ export default {
       this.replyContent = '';
     },
     addReply: function () {
-      // Add a reply, pass in the authoring details.
-      this.model.replies.push(helpers.getNewMessage(this.replyAs, this.replyAsAvatar, this.replyContent));
-      this.toggleReplyForm();
+      // Form validation with semantic UI
+      let replyForm = $('#' + this.replyFormIdentifier);
+      replyForm.form({
+        inline: true,
+        fields: {
+          replyContent: {
+            identifier: 'replyContent', // <-- binds to id, name or data-validate
+            rules: [{
+              type: 'empty',
+              prompt: 'Please enter your reply'
+            }]
+          }
+        }
+      });
+      replyForm.form('validate form');
+
+      if (replyForm.form('is valid')) {
+        // Add a reply, pass in the authoring details.
+        this.model.replies.push(helpers.getNewMessage(this.replyAs, this.replyAsAvatar, this.replyContent));
+        this.toggleReplyForm();
+      }
     }
   }
 }
