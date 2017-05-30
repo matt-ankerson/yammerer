@@ -1,0 +1,12 @@
+
+/* Remove border and background from images */
+.reveal section img {
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+/* Don't enforce upper-case headers */
+.reveal h2 {
+    text-transform: none;
+}
