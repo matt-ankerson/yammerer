@@ -21,15 +21,17 @@
         <a v-else                v-on:click.stop="toggleReplyForm()" class="reply">Cancel</a>
         <a v-if="!liked" v-on:click.stop="addLike()" class="like">Like</a>
         <a v-else        v-on:click.stop="removeLike()" class="like active">You like this</a>
+        <a v-if="currentUserOwnsComment" v-on:click.stop="remove()" class="like">Delete</a>
       </div>
     </div>
     <!-- conditional rendering with v-if -->
     <div v-if="hasReplies()" class="comments">
-      <message v-for="message in model.replies" 
+      <message v-for="(message, index) in model.replies" 
                 :model="message" 
                 :reply-as="replyAs" 
                 :reply-as-avatar="replyAsAvatar" 
-                :key="message.id"></message>
+                :key="message.id"
+                v-on:remove="model.replies.splice(index, 1)"></message>
     </div>
     <form v-if="showReplyForm" class="ui reply form" v-bind:id="replyFormIdentifier">
       <div class="field">
@@ -66,9 +68,22 @@ export default {
   computed: {
     replyFormIdentifier: function () {
       return helpers.guid();
+    },
+    currentUserOwnsComment: function () {
+      // ensure the current user is the owner of the message
+      // (obviously buggy, fix this with proper user management)
+      if (this.replyAs === this.model.author) {
+        return true;
+      }
+      return false;
     }
   },
   methods: {
+    remove: function () {
+      if (!this.currentUserOwnsComment) { return; }
+      /* eslint-disable no-undef */
+      this.$emit('remove');  // emit an event which the parent will recieve.
+    },
     hasReplies: function () {
       // short cicuit evaluation
       return this.model.hasOwnProperty('replies') && this.model.replies.length > 0;
