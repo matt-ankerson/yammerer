@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Time to Up Your Node.js Skills</title>
+
+    <meta name="description" content="An overview of what you can do with node.js">
+    <meta name="author" content="Thomas Vercoutre, Matt Ankerson">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style type="text/css">
+        #header {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            height: 100px;
+            background-color: #333333;
+            width: 100%;
+            z-index: 9999
+        }
+        
+        #logo {
+            height: 80px;
+            margin: 10px 10px 10px 0;
+            float: right
+        }
+        
+        #title {
+            display: inline-block
+        }
+        
+        .reveal section img {
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+        
+        .reveal .featured-app {
+            width: 10%;
+            display: inline-block;
+            margin-left: 30px
+        }
+        
+        .reveal .featured-app img {
+            margin: 0
+        }
+        
+        .reveal .featured-app p {
+            font-size: 0.5em;
+            margin: 0
+        }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <div id="hidden" style="display:none;">
+        <div id="header">
+            <p id="title"></p>
+            <img id="logo" src="https://nodejs.org/static/images/logos/nodejs-new-pantone-white.png"></img>
+        </div>
+    </div>
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section id="title">
+                <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" width="500" style="border:none;background:none"></img>
+                <h3>Time to Up Your Node.js Skills</h3>
+            </section>
+
+            <section>
+                <section data-title="&nbsp;What is Node.js">
+                    <h2>What is Node.js</h2>
+                    <ul>
+                        <li>JavaScript runtime (Server-side)</li>
+                        <li>built on Google Chrome's JavaScript Engine (V8 Engine)</li>
+                        <li>Written in C/C++</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine</li>
+                            <li>Node.js was developed by Ryan Dahl in 2009</li>
+                            <li>Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient</li>
+                            <li>The Node.js project is supported by the Node.js Foundation</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-title="&nbsp;What is Node.js">
+                    <h2>Why node.js</h2>
+                    <p>JSConf 2009: The first presentation on <a href="https://www.youtube.com/watch?v=ztspvPYybIY" target="_blank">Node.js</a> from Ryan Dahl</p>
+                    <ul>
+                        <li>IO needs to be done differently</li>
+                        <li>The event-loop approach: <a href="https://blog.webfaction.com/2008/12/a-little-holiday-present-10000-reqssec-with-nginx-2/" target="_blank">Apache vs Nginx</a></li>
+                        <li>Threaded concurrency is a leaky abstraction.</li>
+                        <li>25. Javascript designed speciﬁcally to be used with an event loop.</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Many web applications have code that are just wait for response.</li>
+                            <li>
+                                Better software can multitask. Other threads of execution can run while waiting => Is that the best that can be done? A look at Apache and NGINX.
+                            </li>
+                            <li>Context switching is not free Execution stacks take up memory For massive concurrency, cannot use an OS thread for each connection.</li>
+                            <li>Javascript designed speciﬁcally to be used with an event loop: Anonymous functions, closures. Only one callback at a time. I/O through DOM event callbacks.</li>
+                            <li>The culture of Javascript is already geared towards evented programming.</li>
+                            <li>This is the node.js project: To provide a purely evented, non-blocking infrastructure to script highly concurrent programs.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-title="&nbsp;What is Node.js">
+                    <h2>A little bit of history</h2>
+                    <ul>
+                        <li>2009: First presentation of node.js</li>
+                        <li>2010: First web development framework: Express</li>
+                        <li>2011: LinkedIn and Uber use Node.js in production</li>
+                        <li>2013: PayPal releases Kraken, a Node.js framework</li>
+                        <li>2015: Joyent Moves to Establish Node.js Foundation</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>LinkedIn launched its completely overhauled mobile app with new features and new parts under the hood.</li>
+                            <li>Uber Engineering Manager Curtis Chambers explains why his company completely re-engineered their application using Node.js to increase efficiency and improve the partner and customer experience.</li>
+                            <li>Joyent, IBM, Microsoft, PayPal, Fidelity, SAP and The Linux Foundation Join Forces to Support Node.js Community With Neutral and Open Governance</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section data-title="Node.js community">
+                <p>Node.js is the fatest growing open source platform in the world</p>
+                <ul>
+                    <li>There are around 1000 node modules published every day (<a href="http://www.modulecounts.com/">Module counts</a>)</li>
+                    <li>Node.js has an estimated <b>7M</b> users and is consistently growing at <b>100%</b> per day </li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <section data-title="The new full stack">
+                    <h2>Why node.js is so popular?</h2>
+                </section>
+                <section data-title="The new full stack">
+                    <div style="position:absolute">
+                        <img src="icontree.jpg" style="width:50%;" />
+                    </div>
+                </section>
+                <section data-title="Frontend development" data-background="#dddddd">
+                    <img style="width:150px" src="https://babeljs.io/images/logo.svg" />
+                    <img style="width:150px" src="http://gatorlug.github.io/js-language-tooling-talk/img/eslint.png" />
+                    <img style="width:150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LESS_Logo.svg/2000px-LESS_Logo.svg.png" />
+                    <img style="width:150px" src="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/03/1425566554jshint-logo.png" />
+                    <br/>
+                    <img style="width:150px" src="http://vermilion1.github.io/presentations/grunt/images/grunt-logo.png" />
+                    <img style="height:150px" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png" />
+                    <img style="width:200px" src="https://cms-assets.tutsplus.com/uploads/users/831/posts/25911/preview_image/webpack-tuts.jpg" />
+                    <br/>
+                    <img style="width:150px" src="https://angular.io/resources/images/logos/angular/angular.svg" />
+                    <img style="width:150px" src="https://vuejs.org/images/logo.png" />
+                    <img style="width:150px" src="http://yycjs.com/real-world-react/img/react-logo.png" />
+                </section>
+                <section data-title="Mobile development">
+                    <img style="width:150px" src="https://cordova.apache.org/static/img/cordova_bot.png" />
+                    <img style="width:150px" src="http://yycjs.com/real-world-react/img/react-logo.png" />
+                    <img style="height:50px" src="https://www.nativescript.org/images/default-source/logos/nativescript-logo.png?sfvrsn=2" />
+                    <img style="width:150px" src="https://img.alicdn.com/tps/TB1zBLaPXXXXXXeXXXXXXXXXXXX-121-59.svg" />
+                </section>
+                <section data-title="Desktop development">
+                    <img src="https://camo.githubusercontent.com/11e7cfd04eceb1ea7464e99edda0e7000487f343/68747470733a2f2f656c656374726f6e2e61746f6d2e696f2f696d616765732f656c656374726f6e2d6c6f676f2e737667" />
+                </section>
+                <section data-title="Desktop development">
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/atom-icon.png" alt="Atom">
+                        <p>Atom</p>
+                    </div>
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/github-desktop-icon.png" alt="GitHub Desktop">
+                        <p>GitHub Desktop</p>
+                    </div>
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/gitkraken-icon.png" alt="GitKraken">
+                        <p>GitKraken</p>
+                    </div>
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/slack-icon.png" alt="Slack">
+                        <p>Slack</p>
+                    </div>
+                    <br />
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/visual-studio-code-icon.png" alt="VS Code">
+                        <p>VS Code</p>
+                    </div>
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/webtorrent-icon.png" alt="WebTorrent">
+                        <p>WebTorrent</p>
+                    </div>
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/wordpress-com-icon.png" alt="WordPress.com">
+                        <p>WordPress</p>
+                    </div>
+                    <div class="featured-app">
+                        <img src="https://electron.atom.io/images/apps/ionic-lab-icon.png" alt="Ionic Lab">
+                        <p>Ionic Lab</p>
+                    </div>
+                </section>
+                <section data-title="Cloud Services">
+                    <img style="width:200px" src="https://uploads.toptal.io/blog/category/logo/106/C.png">
+                    <img style="width:200px" src="https://www.cristie.com/wp-content/uploads/2015/09/msazurelogo.png">
+                    <img style="width:200px" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAA1tAAAAJGIxNDEwNjAxLWZlYTktNDQyNS1hM2NkLTI4OGFiNWYzMDUzYw.png"> https://github.com/Microsoft/nodejs-guidelines
+                </section>
+            </section>
+            <!-- Example of nested vertical slides -->
+            <section>
+                <section>
+                    <h2>Vertical Slides</h2>
+                    <p>Slides can be nested inside of each other.</p>
+                    <p>Use the <em>Space</em> key to navigate through all slides.</p>
+                    <br>
+                    <a href="#" class="navigate-down">
+                        <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+                    </a>
+                </section>
+                <section>
+                    <h2>Basement Level 1</h2>
+                    <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+                </section>
+                <section>
+                    <h2>Basement Level 2</h2>
+                    <p>That's it, time to go back up.</p>
+                    <br>
+                    <a href="#/2">
+                        <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+                    </a>
+                </section>
+            </section>
+
+            <section>
+                <h2>Slides</h2>
+                <p>
+                    Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
+                </p>
+            </section>
+
+            <section>
+                <h2>Point of View</h2>
+                <p>
+                    Press <strong>ESC</strong> to enter the slide overview.
+                </p>
+                <p>
+                    Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
+                </p>
+            </section>
+
+            <section>
+                <h2>Touch Optimized</h2>
+                <p>
+                    Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
+                </p>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Markdown support Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown). ```
+                    <section data-markdown>
+                        ## Markdown support Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+                    </section>
+                    ```
+                </script>
+            </section>
+
+            <section>
+                <section id="fragments">
+                    <h2>Fragments</h2>
+                    <p>Hit the next arrow...</p>
+                    <p class="fragment">... to step through ...</p>
+                    <p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+
+                    <aside class="notes">
+                        This slide has fragments which are also stepped through in the notes window.
+                    </aside>
+                </section>
+                <section>
+                    <h2>Fragment Styles</h2>
+                    <p>There's different types of fragments, like:</p>
+                    <p class="fragment grow">grow</p>
+                    <p class="fragment shrink">shrink</p>
+                    <p class="fragment fade-out">fade-out</p>
+                    <p class="fragment fade-up">fade-up (also down, left and right!)</p>
+                    <p class="fragment current-visible">current-visible</p>
+                    <p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+                </section>
+            </section>
+
+            <section id="transitions">
+                <h2>Transition Styles</h2>
+                <p>
+                    You can select from different transitions, like: <br>
+                    <a href="?transition=none#/transitions">None</a> -
+                    <a href="?transition=fade#/transitions">Fade</a> -
+                    <a href="?transition=slide#/transitions">Slide</a> -
+                    <a href="?transition=convex#/transitions">Convex</a> -
+                    <a href="?transition=concave#/transitions">Concave</a> -
+                    <a href="?transition=zoom#/transitions">Zoom</a>
+                </p>
+            </section>
+
+            <section id="themes">
+                <h2>Themes</h2>
+                <p>
+                    reveal.js comes with a few themes built in: <br>
+                    <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
+                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
+                </p>
+            </section>
+
+            <section>
+                <section data-background="#dddddd">
+                    <h2>Slide Backgrounds</h2>
+                    <p>
+                        Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
+                    </p>
+                    <a href="#" class="navigate-down">
+                        <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+                    </a>
+                </section>
+                <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+                    <h2>Image Backgrounds</h2>
+                    <pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
+                </section>
+                <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="no-repeat" data-background-position="0 0" data-background-size="100px">
+                    <h2>Tiled Backgrounds</h2>
+                    <pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
+                </section>
+                <section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+                    <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+                        <h2>Video Backgrounds</h2>
+                        <pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
+                    </div>
+                </section>
+                <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
+                    <h2>... and GIFs!</h2>
+                </section>
+            </section>
+
+            <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+                <h2>Background Transitions</h2>
+                <p>
+                    Different background transitions are available via the backgroundTransition option. This one's called "zoom".
+                </p>
+                <pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
+            </section>
+
+            <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                <h2>Background Transitions</h2>
+                <p>
+                    You can override background transitions per-slide.
+                </p>
+                <pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
+            </section>
+
+            <section>
+                <h2>Pretty Code</h2>
+                <pre><code class="hljs" data-trim contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) {
+        node.className += ' roll';
+      }
+    }
+  }
+}
+					</code></pre>
+                <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+            </section>
+
+            <section>
+                <h2>Marvelous List</h2>
+                <ul>
+                    <li>No order here</li>
+                    <li>Or here</li>
+                    <li>Or here</li>
+                    <li>Or here</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fantastic Ordered List</h2>
+                <ol>
+                    <li>One is smaller than...</li>
+                    <li>Two is smaller than...</li>
+                    <li>Three!</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Tabular Tables</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Value</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apples</td>
+                            <td>$1</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Lemonade</td>
+                            <td>$2</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>Bread</td>
+                            <td>$3</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Clever Quotes</h2>
+                <p>
+                    These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
+                </p>
+                <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                    &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+                </blockquote>
+            </section>
+
+            <section>
+                <h2>Intergalactic Interconnections</h2>
+                <p>
+                    You can link between slides internally,
+                    <a href="#/2/3">like this</a>.
+                </p>
+            </section>
+
+            <section>
+                <h2>Speaker View</h2>
+                <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
+                <p>Press the <em>S</em> key to try it out.</p>
+
+                <aside class="notes">
+                    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+                </aside>
+            </section>
+
+            <section>
+                <h2>Export to PDF</h2>
+                <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
+                <iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+            </section>
+
+            <section>
+                <h2>Global State</h2>
+                <p>
+                    Set <code>data-state="something"</code> on a slide and <code>"something"</code> will be added as a class to the document element when the slide is open. This lets you apply broader style changes, like switching the page background.
+                </p>
+            </section>
+
+            <section data-state="customevent">
+                <h2>State Events</h2>
+                <p>
+                    Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+                </p>
+                <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+Reveal.addEventListener( 'customevent', function() {
+	console.log( '"customevent" has fired' );
+} );
+					</code></pre>
+            </section>
+
+            <section>
+                <h2>Take a Moment</h2>
+                <p>
+                    Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
+                </p>
+            </section>
+
+            <section>
+                <h2>Much more</h2>
+                <ul>
+                    <li>Right-to-left support</li>
+                    <li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
+                    <li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
+                    <li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
+                    <li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
+                </ul>
+            </section>
+
+            <section style="text-align: left;">
+                <h1>THE END</h1>
+                <p>
+                    - <a href="http://slides.com">Try the online editor</a> <br> - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+                </p>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
+            // Parallax background image
+            //parallaxBackgroundImage: 'http://demo.kallyas.net/parallax/wp-content/uploads/sites/11/2016/08/parallax3.jpg',
+            //parallaxBackgroundImage: 'https://hesterdesigns.com/wp-content/uploads/2016/06/WebSafe-Landing-Page-Parallax-Code.jpg?x88699', 
+            //parallaxBackgroundImage: 'http://eusew.eu/sites/default/files/homepage-parallax/conference_0.jpg', 				
+
+            // Parallax background size
+            parallaxBackgroundSize: '2560px 1024px', // CSS syntax, e.g. "2100px 900px" - currently only pixels are supported (don't use % or auto)
+
+            // Number of pixels to move the parallax background per slide
+            // - Calculated automatically unless specified
+            // - Set to 0 to disable movement along an axis
+            parallaxBackgroundHorizontal: 40,
+            parallaxBackgroundVertical: 40,
+            //http://odutta.me/myoSport/img/project1.png
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: 'plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+        var header = $('#header');
+        Reveal.addEventListener('slidechanged', function(event) {
+            header.detach();
+            if (event.indexh !== 0) {
+                header.find("p").html(event.currentSlide.getAttribute("data-title"));
+                $('div.reveal').prepend(header);
+            }
+        });
+    </script>
+</body>
+
+</html>
