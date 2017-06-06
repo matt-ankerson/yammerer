@@ -1,7 +1,7 @@
 'use strict';
 
-var path = require('path');
-var _ = require('lodash');
+const path = require('path');
+const _ = require('lodash');
 
 // Base config
 var base = {
@@ -9,7 +9,8 @@ var base = {
     root: path.normalize(__dirname + '/../..'),
     port: process.env.PORT || 9000,
     logType: 'dev',
-    logSkip: function(req, res) { return false }
+    logSkip: function(req, res) { return false },
+    dbConnectionString: "mongodb://localhost:27017/yammerer"
 };
 
 // Overide base config with environment
