@@ -2,24 +2,23 @@
  * Koa config
  */
 
-'use strict';
+'use strict'
 
-const config = require('./environment');
-const logger = require('./logger');
+const logger = require('./logger')
 const helmet = require('koa-helmet')
-const compress = require('koa-compress');
-const koaBody = require('koa-body');
+const compress = require('koa-compress')
+const koaBody = require('koa-body')
 
 module.exports = function(app) {
     // configure logger
-    logger(app);
+    logger(app)
 
     // security
-    app.use(helmet());
+    app.use(helmet())
 
     // body parser
-    app.use(koaBody());
+    app.use(koaBody())
 
     // Compress
-    app.use(compress());
-};
+    app.use(compress())
+}

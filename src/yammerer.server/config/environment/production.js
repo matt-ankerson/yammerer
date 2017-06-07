@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // Production config
 module.exports = {
@@ -6,4 +6,4 @@ module.exports = {
     port: process.env.PORT || 8080,
     logType: 'combined',
     logSkip: function(req, res) { return res.statusCode < 400 }
-};
+}

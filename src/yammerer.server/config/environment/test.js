@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
 // Test config
 module.exports = {
 
-};
+}
