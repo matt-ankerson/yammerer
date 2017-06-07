@@ -49,8 +49,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                             <li>I want to talk about a very cool Javascript framework for building interfaces</li>
                             <li>I've used it for a number of things - (DIA rule builder, large scale SPA)</li>
                             <li>
-                                I urge you not to regard Vue as this week's special. It's been around since 2014
-                                and is child's play to learn.
+                                I urge you not to regard Vue as this week's special. It's been around for a while
+                                and is child's play to learn
                             </li>
                         </ul>
 
@@ -59,18 +59,18 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
                 <section>
                     <h2>What is Vue?</h2>
-                    <div class="fragment">
-                        <p>It's a bit like our friends:</p>
-                        <ul>
-                            <li>Knockout</li>
-                            <li>React</li>
-                            <li>Angular</li>
-                            <li>etc etc</li>
-                        </ul>
-                    </div>
+                    <p>It's a bit like our friends:</p>
+                    <ul>
+                        <li>Knockout</li>
+                        <li>React</li>
+                        <li>Angular</li>
+                        <li>
+                            etc
+                        </li>
+                    </ul>
 
                     <aside class="notes">
-                        <p>Vue is not unlike the other players in its core intentions.</p>
+                        <p>Vue is much like the other players in its core intentions.</p>
                         <ul>
                             <li>
                                 You can build full on, balls out single page applications.
@@ -80,6 +80,18 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                             <li>
                                 Or you could make reusable components to use all over your app, or
                                 plug-in to other apps.
+                            </li>
+                        </ul>
+                        <p>Some history:</p>
+                        <ul>
+                            <li>
+                                Created by Evan You (from Google's Angular team)
+                            </li>
+                            <li>
+                                Featured as a rising star on GitHub - Vue has clocked over twice as many stars as Angular 2
+                            </li>
+                            <li>
+                                89% developer satisfaction rating
                             </li>
                         </ul>
                     </aside>
@@ -125,9 +137,21 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                         <ul>
                             <li>
                                 Vue JS is just Javascript. There are no weird constructs, it's just JS objects
-                                all the way down.
+                                all the way down. When you deal with Vue, you're just writing plain old JS.
                             </li>
-                            <li></li>
+                            <li>
+                                For this reason, Vue is super easy to learn. Documentation states about
+                                a day for a developer to be able to build something non-trivial.
+                            </li>
+                            <li>
+                                You can use Vue with or without jQuery, if you don't want routing, or vuex/redux
+                                state management, you don't have to have it. With Vue, pull in features as required.
+                            </li>
+                            <li>
+                                Vue scales up and down - meaning that you can build monolithic applications with it.
+                                Or you can drop a script tag in your markup, pull in Vue and write a small, custom
+                                component for your existing app.
+                            </li>
                         </ul>
                     </aside>
                 </section>
@@ -140,25 +164,65 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                         <li>Recursive components</li>
                         <li>Typescript, if you want</li>
                         <li>CLI project generator</li>
-                        <li>Browser plugin for inspecting components</li>
+                        <li>Browser plugin</li>
                     </ul>
 
                     <aside class="notes">
+                        <ul>
+                            <li>
+                                It uses a virtual DOM, but you never need to worry about it - it's hidden from the
+                                developer.
+                            </li>
+                            <li>
+                                A Vue application is comprised of components. Components each have a HTML template,
+                                javascript and CSS (optionally).
+                            </li>
+                            <li>
+                                In my opinion, Vue components are best expressed in their single-file form.
+                                e.g. 1 component per file. But you can define string templates and do it other ways.
+                            </li>
+                            <li>
+                                There's a command-line interface for setting up new projects.
+                                This takes care of your webpack, eslint-ing, dependency management and all that jazz.
+                            </li>
+                            <li>
+                                Vue gives you a browser plugin which is fantastic for inspecting the state of
+                                your application. (look at this in the demo)
+                            </li>
+                        </ul>
                     </aside>
                 </section>
 
                 <section>
-                    <h2>Killer Feature</h2>
+                    <h2>Killer Features</h2>
                     <ul>
-                        <li>Simplicity.</li>
+                        <li>Simple</li>
+                        <li>Easy to learn</li>
                     </ul>
 
                     <aside class="notes">
                         <ul>
                             <li>Again, Vue JS is just Javascript</li>
-                            <li></li>
+                            <li>It's easy and less opinionated about how your app should look</li>
+                            <li>Simple examples in the documentation actually hold up when you use them in anger</li>
                         </ul>
                     </aside>
+                </section>
+
+                <section>
+                    <p>Demo</p>
+
+                    <aside class="notes">
+                        <p>Let's have a look at an actual Vue application</p>
+                        <p>Specifically:</p>
+                        <ul>
+                            <li>The HTML template - simple rendering</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <a href="https://semantic-ui.com" target="_blank">Semantic UI</>
                 </section>
 
                 <section>
