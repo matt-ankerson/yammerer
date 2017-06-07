@@ -23,3 +23,4 @@
 ### Debug
 The app use the [debug](https://github.com/visionmedia/debug) module. So to see output you need to set the env variable DEBUG to *    
 `SET DEBUG=*`
+

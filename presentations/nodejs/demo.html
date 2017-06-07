@@ -48,7 +48,7 @@
         }
         
         .reveal .featured-app {
-            width: 10%;
+            width: 16%;
             display: inline-block;
             margin-left: 30px
         }
@@ -81,7 +81,7 @@
     <div id="hidden" style="display:none;">
         <div id="header">
             <p id="title"></p>
-            <img id="logo" src="https://nodejs.org/static/images/logos/nodejs-new-pantone-white.png"></img>
+            <img id="logo" src="img/nodejs-new-pantone-white.png"></img>
         </div>
     </div>
     <div class="reveal">
@@ -89,7 +89,7 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section id="title">
-                <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" width="500" style="border:none;background:none"></img>
+                <img src="img/nodejs-new-pantone-black.png" width="500" style="border:none;background:none"></img>
                 <h3>Time to Up Your Node.js Skills</h3>
             </section>
 
@@ -153,7 +153,7 @@
             <section data-title="Node.js community">
                 <p>Node.js is the fatest growing open source platform in the world</p>
                 <ul>
-                    <li>There are around 1000 node modules published every day (<a href="http://www.modulecounts.com/">Module counts</a>)</li>
+                    <li>There are around 1000 node modules published every day (<a href="http://www.modulecounts.com/" target="_blank">Module counts</a>)</li>
                     <li>Node.js has an estimated <b>7M</b> users and is consistently growing at <b>100%</b> per day </li>
                 </ul>
                 <aside class="notes">
@@ -169,31 +169,32 @@
                 </section>
                 <section data-title="The new full stack">
                     <div style="position:absolute">
-                        <img src="icontree.jpg" style="width:50%;" />
+                        <img src="img/icontree.jpg" style="width:50%;" />
                     </div>
                 </section>
                 <section data-title="Frontend development" data-background="#dddddd">
-                    <img style="width:150px" src="https://babeljs.io/images/logo.svg" />
-                    <img style="width:150px" src="http://gatorlug.github.io/js-language-tooling-talk/img/eslint.png" />
-                    <img style="width:150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LESS_Logo.svg/2000px-LESS_Logo.svg.png" />
-                    <img style="width:150px" src="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/03/1425566554jshint-logo.png" />
+                    <img style="height:80px" src="img/babel.png" />
+                    <img style="height:80px" src="img/eslint.png" />
+                    <img style="height:80px" src="img/less.png" />
+                    <img style="height:80px" src="img/jshint.png" />
                     <br/>
-                    <img style="width:150px" src="http://vermilion1.github.io/presentations/grunt/images/grunt-logo.png" />
-                    <img style="height:150px" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png" />
-                    <img style="width:200px" src="https://cms-assets.tutsplus.com/uploads/users/831/posts/25911/preview_image/webpack-tuts.jpg" />
+                    <img style="width:150px" src="img/grunt.png" />
+                    <img style="height:150px" src="img/gulp.png" />
+                    <img style="width:150px" src="img/webpack.png" />
                     <br/>
-                    <img style="width:150px" src="https://angular.io/resources/images/logos/angular/angular.svg" />
-                    <img style="width:150px" src="https://vuejs.org/images/logo.png" />
-                    <img style="width:150px" src="http://yycjs.com/real-world-react/img/react-logo.png" />
+                    <img style="width:150px" src="img/angular.png" />
+                    <img style="width:150px" src="img/vue.png" />
+                    <img style="width:150px" src="img/react.png" />
                 </section>
-                <section data-title="Mobile development">
-                    <img style="width:150px" src="https://cordova.apache.org/static/img/cordova_bot.png" />
-                    <img style="width:150px" src="http://yycjs.com/real-world-react/img/react-logo.png" />
-                    <img style="height:50px" src="https://www.nativescript.org/images/default-source/logos/nativescript-logo.png?sfvrsn=2" />
-                    <img style="width:150px" src="https://img.alicdn.com/tps/TB1zBLaPXXXXXXeXXXXXXXXXXXX-121-59.svg" />
+                <section data-title="Mobile development" data-background="#dddddd">
+                    <img style="width:150px" src="img/cordova.png" />
+                    <img style="width:150px" src="img/react.png" />
+                    <br/>
+                    <img style="width:150px" src="img/nativescript.png" />
+                    <img style="width:150px" src="img/weex.png" />
                 </section>
                 <section data-title="Desktop development">
-                    <img src="https://camo.githubusercontent.com/11e7cfd04eceb1ea7464e99edda0e7000487f343/68747470733a2f2f656c656374726f6e2e61746f6d2e696f2f696d616765732f656c656374726f6e2d6c6f676f2e737667" />
+                    <img src="img/electron.png" />
                 </section>
                 <section data-title="Desktop development">
                     <div class="featured-app">
@@ -230,322 +231,40 @@
                         <p>Ionic Lab</p>
                     </div>
                 </section>
-                <section data-title="Cloud Services">
-                    <img style="width:200px" src="https://uploads.toptal.io/blog/category/logo/106/C.png">
-                    <img style="width:200px" src="https://www.cristie.com/wp-content/uploads/2015/09/msazurelogo.png">
-                    <img style="width:200px" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAA1tAAAAJGIxNDEwNjAxLWZlYTktNDQyNS1hM2NkLTI4OGFiNWYzMDUzYw.png"> https://github.com/Microsoft/nodejs-guidelines
+                <section data-title="Cloud Services" data-background="#dddddd">
+                    <img style="height:100px;float:left" src="img/aws.png">
+                    <br />
+                    <a href="https://github.com/Microsoft/nodejs-guidelines" target="_blank"> <img style="height:100px;float:left" src="img/azure.png"></a>
+                    <br />
+                    <img style="height:100px;float:left" src="img/google.png">
                 </section>
-            </section>
-            <!-- Example of nested vertical slides -->
-            <section>
-                <section>
-                    <h2>Vertical Slides</h2>
-                    <p>Slides can be nested inside of each other.</p>
-                    <p>Use the <em>Space</em> key to navigate through all slides.</p>
-                    <br>
-                    <a href="#" class="navigate-down">
-                        <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-                    </a>
+                <section data-title="IoT Devices" data-background="#dddddd">
+                    <a href="http://johnny-five.io/" target="_blank"> <img style="width:100px;" src="img/j5.png"></a>
+                    <a href="https://cylonjs.com/" target="_blank"> <img style="height:100px;" src="img/cylonjs.png"></a>
+                    <br />
+                    <img style="height:100px" src="img/beaglebone-black.png">
+                    <img style="height:100px" src="img/sparkfun-redboard.png">
+                    <img style="height:100px" src="img/raspberry-pi-3-model-b.png">
+                    <img style="height:100px" src="img/sparkfun-gpio-block.png">
                 </section>
-                <section>
-                    <h2>Basement Level 1</h2>
-                    <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-                </section>
-                <section>
-                    <h2>Basement Level 2</h2>
-                    <p>That's it, time to go back up.</p>
-                    <br>
-                    <a href="#/2">
-                        <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+                <section data-title="IoT Devices" data-background="#dddddd">
+                    <a href="https://blogs.windows.com/buildingapps/2015/05/12/bringing-node-js-to-windows-10-iot-core/#6THYF4vPVHtU3Hto.97" target="_blank">
+                        <img style="height:100px" src="img/windowsiot.png">
+                        <span style="line-height: 140px;vertical-align: bottom;margin: 10px;color: black;font-size: 2em;">+</span>
+                        <img style="height:100px" src="img/ChakraCore.png">
                     </a>
                 </section>
             </section>
-
-            <section>
-                <h2>Slides</h2>
-                <p>
-                    Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-                </p>
-            </section>
-
-            <section>
-                <h2>Point of View</h2>
-                <p>
-                    Press <strong>ESC</strong> to enter the slide overview.
-                </p>
-                <p>
-                    Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-                </p>
-            </section>
-
-            <section>
-                <h2>Touch Optimized</h2>
-                <p>
-                    Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-                </p>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ## Markdown support Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown). ```
-                    <section data-markdown>
-                        ## Markdown support Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-                    </section>
-                    ```
-                </script>
-            </section>
-
-            <section>
-                <section id="fragments">
-                    <h2>Fragments</h2>
-                    <p>Hit the next arrow...</p>
-                    <p class="fragment">... to step through ...</p>
-                    <p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-                    <aside class="notes">
-                        This slide has fragments which are also stepped through in the notes window.
-                    </aside>
-                </section>
-                <section>
-                    <h2>Fragment Styles</h2>
-                    <p>There's different types of fragments, like:</p>
-                    <p class="fragment grow">grow</p>
-                    <p class="fragment shrink">shrink</p>
-                    <p class="fragment fade-out">fade-out</p>
-                    <p class="fragment fade-up">fade-up (also down, left and right!)</p>
-                    <p class="fragment current-visible">current-visible</p>
-                    <p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-                </section>
-            </section>
-
-            <section id="transitions">
-                <h2>Transition Styles</h2>
-                <p>
-                    You can select from different transitions, like: <br>
-                    <a href="?transition=none#/transitions">None</a> -
-                    <a href="?transition=fade#/transitions">Fade</a> -
-                    <a href="?transition=slide#/transitions">Slide</a> -
-                    <a href="?transition=convex#/transitions">Convex</a> -
-                    <a href="?transition=concave#/transitions">Concave</a> -
-                    <a href="?transition=zoom#/transitions">Zoom</a>
-                </p>
-            </section>
-
-            <section id="themes">
-                <h2>Themes</h2>
-                <p>
-                    reveal.js comes with a few themes built in: <br>
-                    <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-                    <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-                </p>
-            </section>
-
-            <section>
-                <section data-background="#dddddd">
-                    <h2>Slide Backgrounds</h2>
-                    <p>
-                        Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-                    </p>
-                    <a href="#" class="navigate-down">
-                        <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-                    </a>
-                </section>
-                <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-                    <h2>Image Backgrounds</h2>
-                    <pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-                </section>
-                <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="no-repeat" data-background-position="0 0" data-background-size="100px">
-                    <h2>Tiled Backgrounds</h2>
-                    <pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-                </section>
-                <section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-                    <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-                        <h2>Video Backgrounds</h2>
-                        <pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-                    </div>
-                </section>
-                <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-                    <h2>... and GIFs!</h2>
-                </section>
-            </section>
-
-            <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-                <h2>Background Transitions</h2>
-                <p>
-                    Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-                </p>
-                <pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-            </section>
-
-            <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-                <h2>Background Transitions</h2>
-                <p>
-                    You can override background transitions per-slide.
-                </p>
-                <pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-            </section>
-
-            <section>
-                <h2>Pretty Code</h2>
-                <pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-                <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-            </section>
-
-            <section>
-                <h2>Marvelous List</h2>
+            <section data-title="what's next ???">
                 <ul>
-                    <li>No order here</li>
-                    <li>Or here</li>
-                    <li>Or here</li>
-                    <li>Or here</li>
+                    <li>Create a Node.js backend with koa</li>
+                    <li>Build a frontend app with Vue.js and Semantic UI</li>
+                    <li>Store data with MongoDb</li>
+                    <li>Deploy to Azure (Linux WebApp + CDN + CosmosDb)</li>
+                    <li>...</li>
                 </ul>
             </section>
-
-            <section>
-                <h2>Fantastic Ordered List</h2>
-                <ol>
-                    <li>One is smaller than...</li>
-                    <li>Two is smaller than...</li>
-                    <li>Three!</li>
-                </ol>
-            </section>
-
-            <section>
-                <h2>Tabular Tables</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Value</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Apples</td>
-                            <td>$1</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>Lemonade</td>
-                            <td>$2</td>
-                            <td>18</td>
-                        </tr>
-                        <tr>
-                            <td>Bread</td>
-                            <td>$3</td>
-                            <td>2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section>
-                <h2>Clever Quotes</h2>
-                <p>
-                    These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-                </p>
-                <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                    &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-                </blockquote>
-            </section>
-
-            <section>
-                <h2>Intergalactic Interconnections</h2>
-                <p>
-                    You can link between slides internally,
-                    <a href="#/2/3">like this</a>.
-                </p>
-            </section>
-
-            <section>
-                <h2>Speaker View</h2>
-                <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-                <p>Press the <em>S</em> key to try it out.</p>
-
-                <aside class="notes">
-                    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-                </aside>
-            </section>
-
-            <section>
-                <h2>Export to PDF</h2>
-                <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-                <iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-            </section>
-
-            <section>
-                <h2>Global State</h2>
-                <p>
-                    Set <code>data-state="something"</code> on a slide and <code>"something"</code> will be added as a class to the document element when the slide is open. This lets you apply broader style changes, like switching the page background.
-                </p>
-            </section>
-
-            <section data-state="customevent">
-                <h2>State Events</h2>
-                <p>
-                    Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-                </p>
-                <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-            </section>
-
-            <section>
-                <h2>Take a Moment</h2>
-                <p>
-                    Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-                </p>
-            </section>
-
-            <section>
-                <h2>Much more</h2>
-                <ul>
-                    <li>Right-to-left support</li>
-                    <li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-                    <li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-                    <li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-                    <li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-                </ul>
-            </section>
-
-            <section style="text-align: left;">
-                <h1>THE END</h1>
-                <p>
-                    - <a href="http://slides.com">Try the online editor</a> <br> - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-                </p>
-            </section>
-
         </div>
-
     </div>
 
     <script src="lib/js/head.min.js"></script>
