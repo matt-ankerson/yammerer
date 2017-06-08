@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const debug = require('debug')('dbconnection')
 const config = require('../config/environment')
 const user = require('./user')
+const post = require('./post')
 
 module.exports = function(onConnected) {
     // Set the default promise library
@@ -13,8 +14,15 @@ module.exports = function(onConnected) {
             let newUsers = [new user({ name: 'Matt', avatar: 'https://semantic-ui.com/images/avatar/small/matt.jpg' }),
                 new user({ name: 'Thomas', avatar: 'https://semantic-ui.com/images/avatar/small/justen.jpg' })
             ]
-            await user.insertMany(newUsers)
+            users = await user.insertMany(newUsers)
         }
+
+        let post1 = new post({
+            content: 'Test Message',
+            postedBy: users[0]._id
+        });
+
+        await post.create(post1);
     }
 
     // Set listerners
