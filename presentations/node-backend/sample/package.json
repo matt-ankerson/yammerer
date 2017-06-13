@@ -1,0 +1,25 @@
+{
+  "name": "node-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "http2": "3.3.6",
+    "koa": "2.2.0",
+    "koa-bodyparser": "4.2.0",
+    "koa-helmet": "3.2.0",
+    "koa-morgan": "1.0.1",
+    "koa-router": "7.2.0",
+    "path": "0.12.7",
+    "rotating-file-stream": "1.2.2"
+  },
+  "devDependencies": {
+    "koa-logger": "3.0.0"
+  }
+}
