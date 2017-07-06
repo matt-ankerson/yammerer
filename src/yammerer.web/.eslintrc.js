@@ -26,6 +26,10 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // disable no unused vars
-    "no-unused-vars": 0
+    "no-unused-vars": 0,
+    // allow any indent
+    "indent": 0,
+    // allow function parenthesis to have no space
+    "space-before-function-paren": 0
   }
 }

@@ -49,6 +49,7 @@
 
 <script>
 import helpers from '../helpers'
+import messageStore from '../data'
 import $ from 'jquery'
 export default {
   name: 'message',
@@ -121,6 +122,7 @@ export default {
         // Add a reply, pass in the authoring details.
         this.model.replies.push(helpers.getNewMessage(this.replyAs, this.replyAsAvatar, this.replyContent));
         this.toggleReplyForm();
+        messageStore.saveState();
       }
     }
   }
