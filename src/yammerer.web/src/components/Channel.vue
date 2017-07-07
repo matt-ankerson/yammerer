@@ -17,6 +17,7 @@
               </div>
             </div>
             </div>
+
             <div class="right menu">
               <div class="item">
                 <div class="circular ui icon button" v-on:click.stop="toggleMessageForm()">
