@@ -33,17 +33,19 @@
                 :key="message.id"
                 v-on:remove="removeChild(index)"></message>
     </div>
-    <form v-if="showReplyForm" class="ui reply form" v-bind:id="replyFormIdentifier">
-      <div class="field">
-        <textarea v-model="replyContent" class="ui focus" name="replyContent"></textarea>
-      </div>
-      <div class="ui primary labeled icon button" v-on:click.stop="addReply()">
-        <i class="icon edit"></i> Add Reply
-      </div>
-      <div class="ui button" v-on:click.stop="toggleReplyForm()">
-        Cancel 
-      </div>
-    </form>
+    <transition name="fade">
+      <form v-if="showReplyForm" class="ui reply form" v-bind:id="replyFormIdentifier">
+        <div class="field">
+          <textarea v-model="replyContent" class="ui focus" name="replyContent"></textarea>
+        </div>
+        <div class="ui primary labeled icon button" v-on:click.stop="addReply()">
+          <i class="icon edit"></i> Add Reply
+        </div>
+        <div class="ui button" v-on:click.stop="toggleReplyForm()">
+          Cancel 
+        </div>
+      </form>
+    </transition>
   </div>
 </template>
 

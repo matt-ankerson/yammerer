@@ -29,18 +29,20 @@
           </div>
           <div class="ui divider"></div>
 
-          <form v-if="showMessageForm" class="ui reply form" id="messageForm">
-            <div class="field">
-              <textarea v-model="newMessageContent" name="newMessageContent"></textarea>
-            </div>
-            <div class="ui primary labeled icon button" v-on:click.stop="addMessage()">
-              <i class="icon edit"></i> Add Message 
-            </div>
-            <div class="ui button" v-on:click.stop="toggleMessageForm()">
-              Cancel 
-            </div>
-            <div class="ui divider hidden"></div>
-          </form>
+          <transition name="fade">
+            <form v-if="showMessageForm" class="ui reply form" id="messageForm">
+              <div class="field">
+                <textarea v-model="newMessageContent" name="newMessageContent"></textarea>
+              </div>
+              <div class="ui primary labeled icon button" v-on:click.stop="addMessage()">
+                <i class="icon edit"></i> Add Message 
+              </div>
+              <div class="ui button" v-on:click.stop="toggleMessageForm()">
+                Cancel 
+              </div>
+              <div class="ui divider hidden"></div>
+            </form>
+          </transition>
   
           <message v-for="(message, index) in messages"
                    :model="message"
@@ -151,5 +153,12 @@ li {
 
 a {
   color: #42b983;
+}
+
+.fade-enter-active/*, .fade-leave-active*/ {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
 </style>
