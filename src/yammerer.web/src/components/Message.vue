@@ -31,7 +31,7 @@
                 :reply-as="replyAs" 
                 :reply-as-avatar="replyAsAvatar" 
                 :key="message.id"
-                v-on:remove="model.replies.splice(index, 1)"></message>
+                v-on:remove="removeChild(index)"></message>
     </div>
     <form v-if="showReplyForm" class="ui reply form" v-bind:id="replyFormIdentifier">
       <div class="field">
@@ -84,6 +84,7 @@ export default {
       if (!this.currentUserOwnsComment) { return; }
       /* eslint-disable no-undef */
       this.$emit('remove');  // emit an event which the parent will recieve.
+      messageStore.saveState();
     },
     hasReplies: function () {
       // short cicuit evaluation
@@ -92,10 +93,12 @@ export default {
     addLike: function () {
       this.liked = true;
       this.model.likes++;
+      messageStore.saveState();
     },
     removeLike: function () {
       this.liked = false;
       this.model.likes--;
+      messageStore.saveState();
     },
     toggleReplyForm: function () {
       this.showReplyForm = !this.showReplyForm;
@@ -124,6 +127,10 @@ export default {
         this.toggleReplyForm();
         messageStore.saveState();
       }
+    },
+    removeChild: function (index) {
+      this.model.replies.splice(index, 1);
+      messageStore.saveState();
     }
   }
 }
