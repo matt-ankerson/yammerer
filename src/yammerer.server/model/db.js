@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const debug = require('debug')('dbconnection')
 const config = require('../config/environment')
 const user = require('./user')
-
+const post = require('./post')
 module.exports = function(onConnected) {
     // Set the default promise library
     mongoose.Promise = require('bluebird')
@@ -14,6 +14,14 @@ module.exports = function(onConnected) {
                 new user({ name: 'Thomas', avatar: 'https://semantic-ui.com/images/avatar/small/justen.jpg' })
             ]
             users = await user.insertMany(newUsers)
+        }
+
+        let posts = await post.find({}).exec()
+        if (posts.length === 0) {
+            let newPosts = [new post({ content: 'My First Post', postedBy: users[0]._id }),
+                new post({ content: 'My Second Post', postedBy: users[1]._id })
+            ]
+            posts = await post.insertMany(newPosts)            
         }
     }
 
