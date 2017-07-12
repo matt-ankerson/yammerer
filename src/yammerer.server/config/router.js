@@ -4,24 +4,27 @@
 
 'use strict'
 const router = require('koa-router')()
+const post = require('../model/post')
 
 module.exports = function() {
     router
         .prefix('/posts')
         .get('/', async(ctx) => {
-            ctx.body = 'Get All Posts!'
+            ctx.body = await post.findAll()
         })
         .get('/:id', async(ctx) => {
-            ctx.body = 'Get one Post!'
+            ctx.body = await post.findById(ctx.params.id)
         })
         .post('/', async(ctx) => {
-            ctx.body = 'Create a new Post!'
+            ctx.body = await post.create(ctx.request.body)
         })
         .put('/:id', async(ctx) => {
-            ctx.body = 'Update a Post!'
+            await post.update(ctx.params.id, ctx.request.body.content)
+            ctx.response.status = 204
         })
         .del('/:id', async(ctx) => {
-            ctx.body = 'Delete a Post!'
+            await post.delete(ctx.params.id)
+            ctx.response.status = 204
         })
     
         return router    
