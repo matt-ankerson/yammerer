@@ -17,5 +17,9 @@ const postSchema = new Schema({
 
 // recursive schema throw an exception
 postSchema.add({ replies: [postSchema] })
-postSchema.statics.getById = (id, cb) => this.where('_id', id).exec(cb)
-module.exports = mongoose.model('Post', postSchema)
+
+// Defines static methods (repository)
+postSchema.statics.findById = (id, cb) => Post.findOne({ _id: id }, cb)
+
+const Post = mongoose.model('Post', postSchema)
+module.exports = Post

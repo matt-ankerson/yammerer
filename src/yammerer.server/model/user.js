@@ -9,8 +9,9 @@ const userSchema = new Schema({
 })
 
 // Defines static methods (repository)
-userSchema.statics.findByName = (name, cb) => User.findOne({ name: name }, cb)
-userSchema.statics.findById = (id, cb) => User.findOne({ _id: id }, cb)
+userSchema.statics.findByName = (name, cb) => User.findOne({ name: name }, cb).exec(cb)
+userSchema.statics.findById = (id, cb) => User.findOne({ _id: id }, cb).exec(cb)
+userSchema.statics.findAll = (name, cb) => User.find({}, cb).exec(cb)
 
 const User = mongoose.model('User', userSchema)
 module.exports = User

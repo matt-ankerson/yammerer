@@ -12,6 +12,7 @@
     "bluebird": "3.5.0",
     "boom": "5.1.0",
     "debug": "2.6.8",
+    "http2": "^3.3.6",
     "koa": "2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "2.0.0",
