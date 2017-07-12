@@ -5,9 +5,9 @@
 ### Set-up MongoDb
 
 1. [Install MongoDb](https://www.mongodb.com/download-center#community) on to your C drive
-2. Copy the mongod.cfg file from the yammerer>install folder to your c:\mongodb\bin folder
-3. Edit the mongod.cfg.
-3. To run mongodb, open a command prompt and navigate to the mongodb bin folder. type "run".    
+2. Copy the mongod.conf and run.bat file from the yammerer>install folder to your {mongodb install path}\bin folder
+3. Edit the mongod.conf.
+3. To run mongodb, open a command prompt and navigate to the mongodb bin folder. type "run".
 * Optional - [Install Robomongo](https://robomongo.org/download): This is a native MongoDb management tool.
 
 ### Running the App

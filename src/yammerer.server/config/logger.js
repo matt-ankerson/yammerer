@@ -5,7 +5,10 @@ const rfs = require('rotating-file-stream');
 const logger = require('koa-logger');
 const config = require('./environment');
 
-module.exports = function(app) {
+module.exports = function() {
+    // In dev, add console logging
+    if (config.env === 'development') return logger()
+
     // ensure log directory exists
     const logDirectory = path.join(__dirname, 'log')
     fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
@@ -17,8 +20,5 @@ module.exports = function(app) {
     })
 
     // file logger
-    app.use(morgan(config.logType, { skip: config.logSkip, stream: accessLogStream }))
-
-    // In dev, add console logging
-    if (config.env === 'development') app.use(logger())
+    return morgan(config.logType, { skip: config.logSkip, stream: accessLogStream })    
 }

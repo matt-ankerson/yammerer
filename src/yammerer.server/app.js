@@ -9,10 +9,5 @@ require('./model/db')(function() {
     // Once connected to the database
     const app = module.exports = new Koa()
     require('./config/koa')(app)
-
-    app.use((ctx) => {
-        ctx.body = 'hello, world!'
-    });
-
     app.listen(config.port, config.ip)
 })

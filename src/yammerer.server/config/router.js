@@ -3,14 +3,11 @@
  */
 
 'use strict'
+const router = require('koa-router')()
 
-const Router = require('koa-router')
-const Boom = require('boom');
-
-module.exports = function(app) {
-    let router = new Router({
-            prefix: '/posts'
-        })
+module.exports = function() {
+    router
+        .prefix('/posts')
         .get('/', async(ctx) => {
             ctx.body = 'Get All Posts!'
         })
@@ -26,12 +23,6 @@ module.exports = function(app) {
         .del('/:id', async(ctx) => {
             ctx.body = 'Delete a Post!'
         })
-
-    app
-        .use(router.routes())
-        .use(router.allowedMethods({
-            throw: true,
-            notImplemented: () => new Boom.notImplemented(),
-            methodNotAllowed: () => new Boom.methodNotAllowed()
-        }))
+    
+        return router    
 }
