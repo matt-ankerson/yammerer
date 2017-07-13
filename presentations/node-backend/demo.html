@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Time to Up Your Node.js Skills</title>
+    <title>Node backend with koajs framework</title>
 
-    <meta name="description" content="An overview of what you can do with node.js">
+    <meta name="description" content="Build a simple API using koa.js">
     <meta name="author" content="Thomas Vercoutre, Matt Ankerson">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,33 +30,33 @@
             width: 100%;
             z-index: 9999
         }
-        
+
         #logo {
             height: 80px;
             margin: 10px 10px 10px 0;
             float: right
         }
-        
+
         #title {
             display: inline-block
         }
-        
+
         .reveal section img {
             background: none;
             border: none;
             box-shadow: none;
         }
-        
+
         .reveal .featured-app {
             width: 16%;
             display: inline-block;
             margin-left: 30px
         }
-        
+
         .reveal .featured-app img {
             margin: 0
         }
-        
+
         .reveal .featured-app p {
             font-size: 0.5em;
             margin: 0
@@ -90,179 +90,34 @@
         <div class="slides">
             <section id="title">
                 <img src="img/nodejs-new-pantone-black.png" width="500" style="border:none;background:none"></img>
-                <h3>Time to Up Your Node.js Skills</h3>
+                <h3>Node backend with koajs framework</h3>
             </section>
-
-            <section>
-                <section data-title="&nbsp;What is Node.js">
-                    <h2>What is Node.js</h2>
-                    <ul>
-                        <li>JavaScript runtime (Server-side)</li>
-                        <li>built on Google Chrome's JavaScript Engine (V8 Engine)</li>
-                        <li>Written in C/C++</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine</li>
-                            <li>Node.js was developed by Ryan Dahl in 2009</li>
-                            <li>Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient</li>
-                            <li>The Node.js project is supported by the Node.js Foundation</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section data-title="&nbsp;What is Node.js">
-                    <h2>Why node.js</h2>
-                    <p>JSConf 2009: The first presentation on <a href="https://www.youtube.com/watch?v=ztspvPYybIY" target="_blank">Node.js</a> from Ryan Dahl</p>
-                    <ul>
-                        <li>IO needs to be done differently</li>
-                        <li>The event-loop approach: <a href="https://blog.webfaction.com/2008/12/a-little-holiday-present-10000-reqssec-with-nginx-2/" target="_blank">Apache vs Nginx</a></li>
-                        <li>Threaded concurrency is a leaky abstraction.</li>
-                        <li>Javascript designed speciﬁcally to be used with an event loop.</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>Many web applications have code that are just wait for response.</li>
-                            <li>
-                                Better software can multitask. Other threads of execution can run while waiting => Is that the best that can be done? A look at Apache and NGINX.
-                            </li>
-                            <li>Context switching is not free Execution stacks take up memory For massive concurrency, cannot use an OS thread for each connection.</li>
-                            <li>Javascript designed speciﬁcally to be used with an event loop: Anonymous functions, closures. Only one callback at a time. I/O through DOM event callbacks.</li>
-                            <li>The culture of Javascript is already geared towards evented programming.</li>
-                            <li>This is the node.js project: To provide a purely evented, non-blocking infrastructure to script highly concurrent programs.</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section data-title="&nbsp;What is Node.js">
-                    <h2>A little bit of history</h2>
-                    <ul>
-                        <li>2009: First presentation of node.js</li>
-                        <li>2010: First web development framework: Express</li>
-                        <li>2011: LinkedIn and Uber use Node.js in production</li>
-                        <li>2013: PayPal releases Kraken, a Node.js framework</li>
-                        <li>2015: Joyent Moves to Establish Node.js Foundation</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>LinkedIn launched its completely overhauled mobile app with new features and new parts under the hood.</li>
-                            <li>Uber Engineering Manager Curtis Chambers explains why his company completely re-engineered their application using Node.js to increase efficiency and improve the partner and customer experience.</li>
-                            <li>Joyent, IBM, Microsoft, PayPal, Fidelity, SAP and The Linux Foundation Join Forces to Support Node.js Community With Neutral and Open Governance</li>
-                        </ul>
-                    </aside>
-                </section>
-            </section>
-            <section data-title="Node.js community">
-                <p>Node.js is the fatest growing open source platform in the world</p>
+            <section data-title="&nbsp;Introduction">
+                <h3>what is <a href="http://koajs.com/" target="_blank">koa.js</a> ?</h3>
                 <ul>
-                    <li>There are around 1000 node modules published every day (<a href="http://www.modulecounts.com/" target="_blank">Module counts</a>)</li>
-                    <li>Node.js has an estimated <b>7M</b> users and is consistently growing at <b>100%</b> per day </li>
+                    <li>Web framework designed by the team behind Express.</li>
+                    <li>A Koa application executes middleware functions in a stack-like manner upon request.</li>
+                    <li>ES2017 async functions support.</li>
                 </ul>
-                <aside class="notes">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </aside>
             </section>
-            <section>
-                <section data-title="The new full stack">
-                    <h2>Why node.js is so popular?</h2>
-                </section>
-                <section data-title="The new full stack">
-                    <div style="position:absolute">
-                        <img src="img/icontree.jpg" style="width:50%;" />
-                    </div>
-                </section>
-                <section data-title="Frontend development" data-background="#dddddd">
-                    <img style="height:80px" src="img/babel.png" />
-                    <img style="height:80px" src="img/eslint.png" />
-                    <img style="height:80px" src="img/less.png" />
-                    <img style="height:80px" src="img/jshint.png" />
-                    <br/>
-                    <img style="width:150px" src="img/grunt.png" />
-                    <img style="height:150px" src="img/gulp.png" />
-                    <img style="width:150px" src="img/webpack.png" />
-                    <br/>
-                    <img style="width:150px" src="img/angular.png" />
-                    <img style="width:150px" src="img/vue.png" />
-                    <img style="width:150px" src="img/react.png" />
-                </section>
-                <section data-title="Mobile development" data-background="#dddddd">
-                    <img style="width:150px" src="img/cordova.png" />
-                    <img style="width:150px" src="img/react.png" />
-                    <br/>
-                    <img style="width:150px" src="img/nativescript.png" />
-                    <img style="width:150px" src="img/weex.png" />
-                </section>
-                <section data-title="Desktop development">
-                    <img src="img/electron.png" />
-                </section>
-                <section data-title="Desktop development">
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/atom-icon.png" alt="Atom">
-                        <p>Atom</p>
-                    </div>
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/github-desktop-icon.png" alt="GitHub Desktop">
-                        <p>GitHub Desktop</p>
-                    </div>
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/gitkraken-icon.png" alt="GitKraken">
-                        <p>GitKraken</p>
-                    </div>
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/slack-icon.png" alt="Slack">
-                        <p>Slack</p>
-                    </div>
-                    <br />
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/visual-studio-code-icon.png" alt="VS Code">
-                        <p>VS Code</p>
-                    </div>
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/webtorrent-icon.png" alt="WebTorrent">
-                        <p>WebTorrent</p>
-                    </div>
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/wordpress-com-icon.png" alt="WordPress.com">
-                        <p>WordPress</p>
-                    </div>
-                    <div class="featured-app">
-                        <img src="https://electron.atom.io/images/apps/ionic-lab-icon.png" alt="Ionic Lab">
-                        <p>Ionic Lab</p>
-                    </div>
-                </section>
-                <section data-title="Cloud Services" data-background="#dddddd">
-                    <img style="height:100px;float:left" src="img/aws.png">
-                    <br />
-                    <a href="https://github.com/Microsoft/nodejs-guidelines" target="_blank"> <img style="height:100px;float:left" src="img/azure.png"></a>
-                    <br />
-                    <img style="height:100px;float:left" src="img/google.png">
-                </section>
-                <section data-title="IoT Devices" data-background="#dddddd">
-                    <a href="http://johnny-five.io/" target="_blank"> <img style="width:100px;" src="img/j5.png"></a>
-                    <a href="https://cylonjs.com/" target="_blank"> <img style="height:100px;" src="img/cylonjs.png"></a>
-                    <br />
-                    <img style="height:100px" src="img/beaglebone-black.png">
-                    <img style="height:100px" src="img/sparkfun-redboard.png">
-                    <img style="height:100px" src="img/raspberry-pi-3-model-b.png">
-                    <img style="height:100px" src="img/sparkfun-gpio-block.png">
-                </section>
-                <section data-title="IoT Devices" data-background="#dddddd">
-                    <a href="https://blogs.windows.com/buildingapps/2015/05/12/bringing-node-js-to-windows-10-iot-core/#6THYF4vPVHtU3Hto.97" target="_blank">
-                        <img style="height:100px" src="img/windowsiot.png">
-                        <span style="line-height: 140px;vertical-align: bottom;margin: 10px;color: black;font-size: 2em;">+</span>
-                        <img style="height:100px" src="img/ChakraCore.png">
-                    </a>
-                </section>
-            </section>
-            <section data-title="what's next ???">
+            <section data-title="&nbsp;Introduction">
+                <h3>Our project: <a href="https://github.com/matt-ankerson/yammerer" target="_blank">Yammerer</a></h3>
                 <ul>
-                    <li>Create a Node.js backend with koa</li>
-                    <li>Build a frontend app with Vue.js and Semantic UI</li>
-                    <li>Store data with MongoDb</li>
-                    <li>Deploy to Azure (Linux WebApp + CDN + CosmosDb)</li>
-                    <li>...</li>
+                    <li>A simple blog post application with replies and likes.</li>
+                    <li>A common sample for all the dev sessions.</li>
                 </ul>
+            </section>
+            <section data-title="&nbsp;Installation">
+                <h3>Prepare your environment</h3>
+                <ul>
+                    <li>Install <a href="https://nodejs.org/en/" target="_blank">Node.js</a> > 7.6.0.</li>
+                    <li>update npm to latest version: <pre><code>npm install npm@latest -g</code></pre></li>
+                    <li>Use your favorite text editor.</li>
+                </ul>
+            </section>
+            <section data-title="&nbsp;Go go go">
+                <h3>Create a node application</h3>
+                <pre><code>npm init</code></pre>
             </section>
         </div>
     </div>
@@ -296,23 +151,23 @@
             // More info https://github.com/hakimel/reveal.js#dependencies
             dependencies: [{
                 src: 'lib/js/classList.js',
-                condition: function() {
+                condition: function () {
                     return !document.body.classList;
                 }
             }, {
                 src: 'plugin/markdown/marked.js',
-                condition: function() {
+                condition: function () {
                     return !!document.querySelector('[data-markdown]');
                 }
             }, {
                 src: 'plugin/markdown/markdown.js',
-                condition: function() {
+                condition: function () {
                     return !!document.querySelector('[data-markdown]');
                 }
             }, {
                 src: 'plugin/highlight/highlight.js',
                 async: true,
-                callback: function() {
+                callback: function () {
                     hljs.initHighlightingOnLoad();
                 }
             }, {
@@ -328,7 +183,7 @@
     <script type="text/javascript">
         // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
         var header = $('#header');
-        Reveal.addEventListener('slidechanged', function(event) {
+        Reveal.addEventListener('slidechanged', function (event) {
             header.detach();
             if (event.indexh !== 0) {
                 header.find("p").html(event.currentSlide.getAttribute("data-title"));
