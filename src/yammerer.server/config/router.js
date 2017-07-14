@@ -35,7 +35,7 @@ module.exports = function() {
             ctx.response.status = 204
         }) 
         .put('/:id/reply', async(ctx) => {
-            ctx.body = await post.reply(ctx.params.id, ctx.request.body)
+            ctx.body = await post.reply(ctx.params.id, ctx.request.body.userId, ctx.request.body.content)
         })
                
     
