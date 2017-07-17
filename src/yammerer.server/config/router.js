@@ -39,10 +39,6 @@ module.exports = function () {
             await post.unlike(ctx.params.documentId, ctx.params.postId, ctx.request.body.userId)
             ctx.response.status = 204
         })
-        .put('/:id/reply', async(ctx) => {
-            ctx.body = await post.reply(ctx.params.id, ctx.request.body.userId, ctx.request.body.content)
-        })
-
 
     return router
 }
