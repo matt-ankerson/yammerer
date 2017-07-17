@@ -178,6 +178,7 @@ postSchema.statics.deleteAllById = (documentId, userId) => Post.remove({
  * @param {String} userId - The user identifier.
  */
 postSchema.statics.deleteById = async(documentId, postId, userId) => {
+    //Delete the post if exists
     let {
         nModified
     } = await Post.update({
@@ -196,6 +197,15 @@ postSchema.statics.deleteById = async(documentId, postId, userId) => {
 
     if (nModified === 0) return;
 
+    // Delete the children
+    await Post.update({
+        _id: documentId,
+        'comments.parents': postId     
+    }, {
+        $pull: {comments : { parents: postId  }}
+    }).exec()
+
+    // Update the parent
     return Post.update({
         _id: documentId,
         'comments.children': postId
