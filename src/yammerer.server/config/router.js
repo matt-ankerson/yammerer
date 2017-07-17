@@ -6,24 +6,29 @@
 const router = require('koa-router')()
 const post = require('../model/post')
 
-module.exports = function() {
+module.exports = function () {
     router
         .prefix('/posts')
-        .get('/', async(ctx) => {
-            ctx.body = await post.findAll()
+        .get('/:documentId', async(ctx) => {
+            ctx.body = await post.findAllById(ctx.params.documentId)
         })
-        .get('/:id', async(ctx) => {
-            ctx.body = await post.findById(ctx.params.id)
+        .get('/:documentId/:postId', async(ctx) => {
+            ctx.body = (await post.findById(ctx.params.documentId, ctx.params.postId))[0]
         })
         .post('/', async(ctx) => {
-            ctx.body = await post.add(ctx.request.body.content, ctx.request.body.userId)
-        })
-        .put('/:id', async(ctx) => {
-            await post.update(ctx.params.id, ctx.request.body.userId, ctx.request.body.content)
+            await post.add(ctx.request.body.documentId, ctx.request.body.postId, ctx.request.body.content, ctx.request.body.userId)
             ctx.response.status = 204
         })
-        .del('/:id', async(ctx) => {
-            await post.delete(ctx.params.id, ctx.request.body.userId)
+        .put('/', async(ctx) => {
+            await post.updateById(ctx.request.body.documentId, ctx.request.body.postId, ctx.request.body.content, ctx.request.body.userId)
+            ctx.response.status = 204
+        })
+        .del('/:documentId', async(ctx) => {
+            await post.deleteAllById(ctx.params.documentId, ctx.request.body.userId)
+            ctx.response.status = 204
+        })
+        .del('/:documentId/:postId', async(ctx) => {
+            await post.deleteById(ctx.params.documentId, ctx.params.postId, ctx.request.body.userId)
             ctx.response.status = 204
         })
         .put('/:id/like', async(ctx) => {
@@ -33,11 +38,11 @@ module.exports = function() {
         .put('/:id/unlike', async(ctx) => {
             await post.unlike(ctx.params.id, ctx.request.body.userId)
             ctx.response.status = 204
-        }) 
+        })
         .put('/:id/reply', async(ctx) => {
             ctx.body = await post.reply(ctx.params.id, ctx.request.body.userId, ctx.request.body.content)
         })
-               
-    
-        return router    
+
+
+    return router
 }
