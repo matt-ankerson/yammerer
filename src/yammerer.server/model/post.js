@@ -143,7 +143,7 @@ postSchema.statics.add = async(documentId, postId, content, userId) => {
 
 /**
  * Update the specified post inside the specified document
- * @method add
+ * @method updateById
  * @param {String} documentId - the identifier of the document where the post is stored
  * @param {String} postId - The post identifier.
  * @param {String} content - The post content.
@@ -160,7 +160,7 @@ postSchema.statics.updateById = (documentId, postId, content, userId) => Post.up
 
 /**
  * Delete all the posts inside a document
- * @method Delete
+ * @method deleteAllById
  * @param {String} documentId - the identifier of the document where the post is stored
  * @param {String} userId - The user identifier.
  * @param {requestCallback} callback - The callback that handles the response.
@@ -172,7 +172,7 @@ postSchema.statics.deleteAllById = (documentId, userId) => Post.remove({
 
 /**
  * Delete a post inside a document
- * @method Delete
+ * @method deleteById
  * @param {String} documentId - the identifier of the document where the post is stored
  * @param {String} postId - The post identifier.
  * @param {String} userId - The user identifier.
@@ -200,9 +200,13 @@ postSchema.statics.deleteById = async(documentId, postId, userId) => {
     // Delete the children
     await Post.update({
         _id: documentId,
-        'comments.parents': postId     
+        'comments.parents': postId
     }, {
-        $pull: {comments : { parents: postId  }}
+        $pull: {
+            comments: {
+                parents: postId
+            }
+        }
     }).exec()
 
     // Update the parent
@@ -216,70 +220,48 @@ postSchema.statics.deleteById = async(documentId, postId, userId) => {
     }).exec()
 }
 
-postSchema.statics.like = async(id, userId, cb) => {
-    let liker = await user.findById(userId)
-    return Post.findOneAndUpdate({
-        '_id': id,
-        'likes._id': {
-            '$ne': userId
-        }
-    }, {
-        $push: {
-            likes: new Like({
-                name: liker.name,
-                _id: liker._id
-            })
-        },
-        $inc: {
-            totalLikesCount: 1
-        }
-    }, cb)
-}
-postSchema.statics.unlike = async(id, userId, cb) => Post.findOneAndUpdate({
-    '_id': id,
-    'likes._id': userId
+/**
+ * Like a post
+ * @method like
+ * @param {String} documentId - the identifier of the document where the post is stored
+ * @param {String} postId - The post identifier.
+ * @param {String} userId - The user identifier.
+ */
+postSchema.statics.like = async(documentId, postId, userId) => Post.update({
+    _id: documentId,
+    'comments._id': postId,
+    'comments.likes._id': {
+        '$ne': userId
+    }
+}, {
+    $push: {
+        'comments.$.likes': new Like({
+            name: (await user.findById(userId)).name,
+            _id: userId
+        })
+    }
+}).exec()
+
+/**
+ * Unlike a post
+ * @method unlike
+ * @param {String} documentId - the identifier of the document where the post is stored
+ * @param {String} postId - The post identifier.
+ * @param {String} userId - The user identifier.
+ */
+postSchema.statics.unlike = async(documentId, postId, userId) => Post.update({
+    _id: documentId,
+    'comments._id': postId,
+    'comments.likes._id': {
+        '$eq': userId
+    }
 }, {
     $pull: {
-        likes: {
+        'comments.$.likes': {
             _id: userId
         }
-    },
-    $inc: {
-        totalLikesCount: -1
     }
-}, cb)
-
-postSchema.statics.reply = async(id, userId, content, cb) => {
-    return Post.findOneAndUpdate({
-        _id: id
-    }, {
-        $push: {
-            replies: new Post({
-                content: content,
-                postedBy: userId
-            })
-        },
-        $inc: {
-            totalRepliesCount: 1
-        }
-    }, cb)
-}
-
-postSchema.statics.rereply = async(id, userId, replyId, content, cb) => {
-    return Post.findOneAndUpdate({
-        _id: id
-    }, {
-        $push: {
-            replies: new Post({
-                content: content,
-                postedBy: userId
-            })
-        },
-        $inc: {
-            totalRepliesCount: 1
-        }
-    }, cb)
-}
+}).exec()
 
 const Like = mongoose.model('Like', likeSchema)
 const Comment = mongoose.model('Comment', commentSchema)

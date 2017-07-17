@@ -31,12 +31,12 @@ module.exports = function () {
             await post.deleteById(ctx.params.documentId, ctx.params.postId, ctx.request.body.userId)
             ctx.response.status = 204
         })
-        .put('/:id/like', async(ctx) => {
-            await post.like(ctx.params.id, ctx.request.body.userId)
+        .put('/:documentId/:postId/like', async(ctx) => {
+            await post.like(ctx.params.documentId, ctx.params.postId, ctx.request.body.userId)
             ctx.response.status = 204
         })
-        .put('/:id/unlike', async(ctx) => {
-            await post.unlike(ctx.params.id, ctx.request.body.userId)
+        .put('/:documentId/:postId/unlike', async(ctx) => {
+            await post.unlike(ctx.params.documentId, ctx.params.postId, ctx.request.body.userId)
             ctx.response.status = 204
         })
         .put('/:id/reply', async(ctx) => {
