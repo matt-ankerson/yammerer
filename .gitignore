@@ -1,3 +1,5 @@
+# Vim metadata
+*.swp
 # Logs
 logs
 *.log
