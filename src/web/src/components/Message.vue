@@ -10,7 +10,7 @@
         <span class="date">{{model.time}}</span>
         <div class="rating">
           <i class="thumbs up icon"></i>
-          {{model.likes}} likes 
+          {{model.likers.length}} likes 
         </div>
       </div>
       <div class="text">
@@ -19,8 +19,8 @@
       <div class="actions">
         <a v-if="!showReplyForm" v-on:click.stop="toggleReplyForm()" class="reply">Reply</a>
         <a v-else                v-on:click.stop="toggleReplyForm()" class="reply">Cancel</a>
-        <a v-if="!liked" v-on:click.stop="addLike()" class="like">Like</a>
-        <a v-else        v-on:click.stop="removeLike()" class="like active">You like this</a>
+        <a v-if="liked" v-on:click.stop="removeLike()" class="like active">You like this</a>
+        <a v-else-if="!currentUserOwnsComment" v-on:click.stop="addLike()" class="like">Like</a>
         <a v-if="currentUserOwnsComment" v-on:click.stop="remove()" class="like">Delete</a>
       </div>
     </div>
@@ -28,8 +28,7 @@
     <div v-if="hasReplies()" class="comments">
       <message v-for="(message, index) in model.replies" 
                 :model="message" 
-                :reply-as="replyAs" 
-                :reply-as-avatar="replyAsAvatar" 
+                :reply-as="replyAs"
                 :key="message.id"
                 v-on:remove="removeChild(index)"></message>
     </div>
@@ -56,14 +55,11 @@ import $ from 'jquery'
 export default {
   name: 'message',
   props: {
-    replyAs: String,
-    replyAsAvatar: String,
+    replyAs: Object,
     model: Object
-    // custom validator here? (to ensure object props exist)
   },
   data () {
     return {
-      liked: false,
       showReplyForm: false,
       replyContent: ''
     }
@@ -72,10 +68,13 @@ export default {
     replyFormIdentifier: function () {
       return helpers.guid();
     },
+    liked: function () {
+      return this.model.likers.includes(this.replyAs.username)
+    },
     currentUserOwnsComment: function () {
       // ensure the current user is the owner of the message
       // (obviously buggy, fix this with proper user management)
-      if (this.replyAs === this.model.author) {
+      if (this.replyAs.username === this.model.author) {
         return true;
       }
       return false;
@@ -93,13 +92,11 @@ export default {
       return this.model.hasOwnProperty('replies') && this.model.replies.length > 0;
     },
     addLike: function () {
-      this.liked = true;
-      this.model.likes++;
+      this.model.likers.push(this.replyAs.username);
       messageStore.saveState();
     },
     removeLike: function () {
-      this.liked = false;
-      this.model.likes--;
+      this.model.likers.splice(this.model.likers.indexOf(this.replyAs.username), 1);
       messageStore.saveState();
     },
     toggleReplyForm: function () {
@@ -125,7 +122,7 @@ export default {
 
       if (replyForm.form('is valid')) {
         // Add a reply, pass in the authoring details.
-        this.model.replies.push(helpers.getNewMessage(this.replyAs, this.replyAsAvatar, this.replyContent));
+        this.model.replies.push(helpers.getNewMessage(this.replyAs, this.replyContent));
         this.toggleReplyForm();
         messageStore.saveState();
       }

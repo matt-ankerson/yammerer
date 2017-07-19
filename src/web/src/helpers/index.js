@@ -1,16 +1,4 @@
-export default {
-  getNewMessage (author, avatar, content) {
-    return {
-      author: author,
-      avatar: avatar,
-      content: content,
-      likes: 0,
-      replies: [],
-      time: (new Date()).toLocaleString()
-    };
-  },
-  getRandomUserName () {
-    let adjectives = [
+const adjectives = [
       'Noisy',
       'Agreeable',
       'Calm',
@@ -25,7 +13,7 @@ export default {
       'Witty',
       'Zealous'
     ];
-    let nouns = [
+const nouns = [
       'Cat',
       'Dog',
       'Mouse',
@@ -39,11 +27,7 @@ export default {
       'Owl',
       'Trout'
     ];
-    return adjectives[Math.floor(Math.random() * adjectives.length)] + ' ' +
-            nouns[Math.floor(Math.random() * nouns.length)];
-  },
-  getRandomAvatarUrl () {
-    let avatars = [
+const avatars = [
       'https://semantic-ui.com/images/avatar/small/elliot.jpg',
       'https://semantic-ui.com/images/avatar/small/jenny.jpg',
       'https://semantic-ui.com/images/avatar/small/joe.jpg',
@@ -52,6 +36,23 @@ export default {
       'https://semantic-ui.com/images/avatar/small/justen.jpg',
       'https://semantic-ui.com/images/avatar/small/laura.jpg'
     ];
+
+export default {
+  getNewMessage (user, content) {
+    return {
+      author: user.username,
+      avatar: user.avatar,
+      content: content,
+      likers: [],
+      replies: [],
+      time: (new Date()).toLocaleString()
+    };
+  },
+  getRandomUserName () {
+    return adjectives[Math.floor(Math.random() * adjectives.length)] + ' ' +
+            nouns[Math.floor(Math.random() * nouns.length)];
+  },
+  getRandomAvatarUrl () {
     return avatars[Math.floor(Math.random() * avatars.length)];
   },
   guid () {
@@ -62,5 +63,13 @@ export default {
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
       s4() + '-' + s4() + s4() + s4();
+  },
+  getRandonUserList () {
+    return Array.from({length: 5}, (v, i) => {
+      return {
+      username: this.getRandomUserName(),
+      avatar: this.getRandomAvatarUrl()
+      }
+    })
   }
 }
