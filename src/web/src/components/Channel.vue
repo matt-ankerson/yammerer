@@ -16,7 +16,6 @@
               </div>
             </div>
           </div>
-
           <div class="ui divider"></div>
   
           <transition name="fade">
