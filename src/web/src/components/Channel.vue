@@ -33,7 +33,7 @@
             </form>
           </transition>
   
-          <message v-for="(message, index) in messages" :model="message" :reply-as="selectedUser.username" :reply-as-avatar="selectedUser.avatar" :key="message.id" v-on:remove="removeChild(index)"></message>
+          <message v-for="(message, index) in messages" :model="message" :reply-as="selectedUser" :key="message.id" v-on:remove="removeChild(index)"></message>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@ export default {
         author: users[0].username,
         avatar: users[0].avatar,
         content: 'Gidday maaate!!',
-        likes: 2,
+        likers: [],
         time: '2017-5-28 17:49:24',
         replies: []
       }]);
@@ -94,7 +94,7 @@ export default {
 
       if (messageForm.form('is valid')) {
         // Add a message to the beginning of array, pass in the authoring details.
-        this.messages.unshift(helpers.getNewMessage(this.selectedUser.username, this.selectedUser.avatar, this.newMessageContent));
+        this.messages.unshift(helpers.getNewMessage(this.selectedUser, this.newMessageContent));
         this.toggleMessageForm();
         messageStore.saveState();
       }

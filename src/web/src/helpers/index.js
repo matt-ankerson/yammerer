@@ -38,12 +38,12 @@ const avatars = [
     ];
 
 export default {
-  getNewMessage (author, avatar, content) {
+  getNewMessage (user, content) {
     return {
-      author: author,
-      avatar: avatar,
+      author: user.username,
+      avatar: user.avatar,
       content: content,
-      likes: 0,
+      likers: [],
       replies: [],
       time: (new Date()).toLocaleString()
     };
