@@ -9,7 +9,7 @@
             <dropdown :items="userList" :selected.sync="selectedUser" />
             <div class="right menu">
               <div class="item">
-                <div class="circular ui icon button" v-on:click.stop="toggleMessageForm()">
+                <div class="ui icon button" v-on:click.stop="toggleMessageForm()">
                   <i v-if="!showMessageForm" class="plus icon"></i>
                   <i v-else class="remove icon"></i>
                 </div>
