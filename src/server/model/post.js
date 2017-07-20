@@ -123,7 +123,7 @@ postSchema.statics.add = async(documentId, postId, content, userId) => {
         }).exec()
 
         // update the parent post
-        return Post.update({
+        await Post.update({
             _id: documentId,
             'comments._id': postId
         }, {
@@ -133,6 +133,16 @@ postSchema.statics.add = async(documentId, postId, content, userId) => {
         }, {
             new: true
         }).exec()
+
+        return Post.findOne({
+            _id: documentId
+        }, {
+            comments: {
+                $elemMatch: {
+                    _id: reply._id
+                }
+            }
+        }).lean().exec();
     }
 
     return Post.create({

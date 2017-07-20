@@ -10,8 +10,11 @@ module.exports = function(onConnected) {
     const seed = async function() {
         let users = await user.find({}).exec()
         if (users.length === 0) {
-            let newUsers = [new user({ name: 'Matt', avatar: 'https://semantic-ui.com/images/avatar/small/matt.jpg' }),
-                new user({ name: 'Thomas', avatar: 'https://semantic-ui.com/images/avatar/small/justen.jpg' })
+            let newUsers = [new user({ name: 'Relieved Owl', avatar: 'https://semantic-ui.com/images/avatar/small/matt.jpg' }),
+                new user({ name: 'Happy Gull', avatar: 'https://semantic-ui.com/images/avatar/small/laura.jpg' }),
+                new user({ name: 'Agreeable Duck', avatar: 'https://semantic-ui.com/images/avatar/small/justen.jpg' }),
+                new user({ name: 'Noisy Sparrow', avatar: 'https://semantic-ui.com/images/avatar/small/joe.jpg' }),
+                new user({ name: 'Witty Dog', avatar: 'https://semantic-ui.com/images/avatar/small/jenny.jpg' })
             ]
             users = await user.insertMany(newUsers)
         }

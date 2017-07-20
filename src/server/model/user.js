@@ -8,10 +8,13 @@ const userSchema = new Schema({
     timestamps: true
 })
 
-// Defines static methods (repository)
-userSchema.statics.findByName = (name, cb) => User.findOne({ name: name }, cb).exec(cb)
-userSchema.statics.findById = (id, cb) => User.findOne({ _id: id }, cb).exec(cb)
-userSchema.statics.findAll = (name, cb) => User.find({}, cb).exec(cb)
+
+/**
+ * Get all the users from the db
+ * @method findAll
+ * @return {User[]} An array of users
+ */
+userSchema.statics.findAll = () => User.find({}).limit(5).lean().exec()
 
 const User = mongoose.model('User', userSchema)
 module.exports = User

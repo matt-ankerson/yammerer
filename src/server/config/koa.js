@@ -26,6 +26,9 @@ module.exports = function(app) {
         .use(async(ctx, next) => {
             try {
                 await next();
+                ctx.set('Access-Control-Allow-Origin', 'http://localhost:8080');
+                ctx.set('Access-Control-Allow-Headers', 'Content-Type');
+                
             } catch (err) {
                 ctx.status = err.statusCode || err.status || 500
                 ctx.body = err.message || 'Something went wrong!'
