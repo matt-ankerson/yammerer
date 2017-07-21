@@ -4,15 +4,18 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
+    ecmaVersion: 2017,
     sourceType: 'module'
   },
   env: {
     browser: true,
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: 'eslint:recommended',
   // required to lint *.vue files
   plugins: [
+    "standard",
+    "promise",
     'html'
   ],
   // add your custom rules here
@@ -24,6 +27,7 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // disable no unused vars
     "no-unused-vars": 0,

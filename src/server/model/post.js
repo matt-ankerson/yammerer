@@ -1,18 +1,5 @@
 const mongoose = require('mongoose')
-const user = require('./user')
 const Schema = mongoose.Schema
-
-const likeSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
-})
 
 const commentSchema = new Schema({
     content: {
@@ -25,7 +12,10 @@ const commentSchema = new Schema({
         ref: 'User',
         required: true
     },
-    likes: [likeSchema],
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     parents: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
@@ -46,7 +36,16 @@ const postSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
+}, {
+    timestamps: true
 })
+
+/**
+ * Get all the posts from the db
+ * @method findAll
+ * @return {Post[]} An array of posts
+ */
+postSchema.statics.findAll = () => Post.find({}).sort({updatedAt: 'desc'}).limit(5).lean().exec()
 
 /**
  * Get the whole document representing the post
@@ -111,7 +110,7 @@ postSchema.statics.add = async(documentId, postId, content, userId) => {
             'comments.$': 1
         }).exec()
         let post = document.comments[0];
-        reply.parents = [...post.parents, postId]
+        reply.parents = [postId, ...post.parents]
 
         // push the new reply
         await Post.update({
@@ -160,35 +159,24 @@ postSchema.statics.add = async(documentId, postId, content, userId) => {
  * @param {String} userId - The user identifier.
  * @return {Post} The requested post
  */
-postSchema.statics.updateById = (documentId, postId, content, userId) => Post.update({
-    _id: documentId,
-    'comments.postedBy': userId,
-    'comments._id': postId
-}, {
-    'comments.$.content': content
-}).exec()
+postSchema.statics.updateById = (documentId, postId, content, userId) => {
+    return Post.update({
+        _id: documentId,
+        comments : { $elemMatch: { _id: postId, postedBy: userId}}
+    }, {
+        'comments.$.content': content
+    }).exec()
+}
 
 /**
- * Delete all the posts inside a document
- * @method deleteAllById
- * @param {String} documentId - the identifier of the document where the post is stored
- * @param {String} userId - The user identifier.
- * @param {requestCallback} callback - The callback that handles the response.
- */
-postSchema.statics.deleteAllById = (documentId, userId) => Post.remove({
-    _id: documentId,
-    postedBy: userId
-}).exec()
-
-/**
- * Delete a post inside a document
- * @method deleteById
+ * Delete a post. if the post is the main post also remove the document
+ * @method delete
  * @param {String} documentId - the identifier of the document where the post is stored
  * @param {String} postId - The post identifier.
  * @param {String} userId - The user identifier.
  */
-postSchema.statics.deleteById = async(documentId, postId, userId) => {
-    //Delete the post if exists
+postSchema.statics.delete = async(documentId, postId, userId) => {
+    // Delete the post if exists
     let {
         nModified
     } = await Post.update({
@@ -220,13 +208,33 @@ postSchema.statics.deleteById = async(documentId, postId, userId) => {
     }).exec()
 
     // Update the parent
-    return Post.update({
+    await Post.update({
         _id: documentId,
         'comments.children': postId
     }, {
         $pull: {
             'comments.$.children': postId
         }
+    }).exec()
+
+    let document = await Post.aggregate([{
+        $match: {
+            _id: mongoose.Types.ObjectId(documentId)
+        }
+    }, {
+        "$project": {
+            "comment_count": {
+                "$size": "$comments"
+            }
+        }
+    }])
+
+    if (document[0].comment_count > 0) return;
+
+    // Remove the post if empty
+    await Post.remove({
+        _id: documentId,
+        postedBy: userId
     }).exec()
 }
 
@@ -240,15 +248,12 @@ postSchema.statics.deleteById = async(documentId, postId, userId) => {
 postSchema.statics.like = async(documentId, postId, userId) => Post.update({
     _id: documentId,
     'comments._id': postId,
-    'comments.likes._id': {
+    'comments.likes': {
         '$ne': userId
     }
 }, {
     $push: {
-        'comments.$.likes': new Like({
-            name: (await user.findById(userId)).name,
-            _id: userId
-        })
+        'comments.$.likes': userId
     }
 }).exec()
 
@@ -262,17 +267,12 @@ postSchema.statics.like = async(documentId, postId, userId) => Post.update({
 postSchema.statics.unlike = async(documentId, postId, userId) => Post.update({
     _id: documentId,
     'comments._id': postId,
-    'comments.likes._id': {
-        '$eq': userId
-    }
+    'comments.likes': userId
 }, {
     $pull: {
-        'comments.$.likes': {
-            _id: userId
-        }
+        'comments.$.likes': userId
     }
 }).exec()
 
-const Like = mongoose.model('Like', likeSchema)
 const Comment = mongoose.model('Comment', commentSchema)
 const Post = module.exports = mongoose.model('Post', postSchema)

@@ -1,27 +1,102 @@
+import axios from 'axios'
+
+const transformToTree = function(comments) {
+    var nodes = {};
+    return comments.filter(function (comment) {
+      comment.parent = comment.parents.length > 0 ? comment.parents[0] : undefined
+      comment.id = comment._id
+      delete comment.parents
+      delete comment._id
+      delete comment.children
+      let id = comment.id,
+        parentId = comment.parent
+      nodes[id] = Object.assign(comment, nodes[id], {
+        replies: []
+      })
+      parentId && (nodes[parentId] = (nodes[parentId] || {
+        replies: []
+      })).replies.push(comment);
+
+      return !parentId;
+    });
+  }
+
 export default {
-    // Our persistent storage is not reactive.
-    // So, we need to provide an object which we can bind to.
-    reactive: {
-        messages: []
-    },
-    hasMessages() {
-        // Is this the first visit for this browser?
-        if (localStorage.getItem('messages') === null) {
-            return false;
-        }
-        return true;
-    },
-    saveState() {
-        // Persist the current messages.
-        this.setMessages(this.reactive.messages);
-    },
-    loadMessages() {
-        // Hydrate the reactive messages with the contents of localStorage.
-        let parsedMessages = JSON.parse(localStorage.getItem('messages'));
-        this.reactive.messages = parsedMessages;
-    },
-    setMessages(newMessages) {
-        // Write/Overwrite messages into localStorage
-        localStorage.setItem('messages', JSON.stringify(newMessages));
+  async getUsers() {
+    let response = await axios.get('https://localhost/users')
+    return response.data.map(u => {
+      return {
+        id: u._id,
+        name: u.name,
+        avatar: u.avatar
+      }
+    })
+  },
+  async getPosts() {
+    let response = await axios.get('https://localhost/posts/latest')
+    
+    response.data.forEach((doc) => {
+      doc.message = transformToTree(doc.comments)[0]
+      doc.id = doc._id
+      delete doc._id
+      delete doc.__v
+      delete doc.comments
+    });
+    console.log(JSON.stringify(response.data))
+    return response.data
+  },
+  async sendMessage(documentId, postId, content, userId) {
+    let response = await axios.post('https://localhost/posts/', {
+      documentId: documentId,
+      postId: postId,
+      userId: userId,
+      content: content
+    })
+    return response.data
+  },
+  async update(documentId, postId, content, userId) {
+    await axios.put('https://localhost/posts/' + documentId + '/' + postId, {
+      userId: userId,
+      content: content
+    })
+  },
+  async remove(documentId, postId, userId) {
+    await axios.delete('https://localhost/posts/' + documentId + '/' + postId + '/' + userId)
+  },
+  async like(documentId, postId, userId) {
+    await axios.put('https://localhost/posts/' + documentId + '/' + postId + '/like', {
+      userId: userId
+    })
+  },
+  async unlike(documentId, postId, userId) {
+    await axios.put('https://localhost/posts/' + documentId + '/' + postId + '/unlike', {
+      userId: userId
+    })
+  },
+  getChannel(data) {
+    let message = data.comments[0]
+    return {
+      id: data._id,
+      postedBy: data.postedBy,
+      message: {
+        content: message.content,
+        id: message._id,
+        postedBy: message.postedBy,
+        createdAt: message.createdAt,
+        likes: [],
+        replies: []
+      }
+    };
+  },
+  getReply(data) {
+    let message = data.comments[0]
+    return {
+      content: message.content,
+      id: message._id,
+      postedBy: message.postedBy,
+      createdAt: message.createdAt,
+      likes: [],
+      replies: []
     }
+  }
 }

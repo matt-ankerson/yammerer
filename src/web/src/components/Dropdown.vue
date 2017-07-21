@@ -4,8 +4,8 @@
     <i class="dropdown icon"></i>
     <div class="default text">Select User</div>
     <div class="menu">
-      <div :key="item.username" v-for="(item, index) in items" :data-value="item.username" class="item">
-        <img class="ui mini avatar image" :src="item.avatar"> {{item.username}}
+      <div :key="item.name" v-for="(item, index) in items" :data-value="item.name" class="item">
+        <img class="ui mini avatar image" :src="item.avatar"> {{item.name}}
       </div>
     </div>
   </div>
@@ -15,18 +15,30 @@
 import $ from 'jquery'
 export default {
   name: 'dropdown',
+  data () {
+    return {
+      internalValue: undefined
+    }
+  },
   props: {
     items: Array,
-    selected: Object
+    value: undefined
+  },
+  watch: {
+    internalValue: function() {
+      this.$emit('input', this.internalValue);
+    }
+  },
+  created: function () {
+    this.internalValue = this.value
   },
   mounted: function () {
     let that = this;
     $(this.$el).dropdown({
       onChange: (value, text, $choice) => {
-        that.$emit('update:selected', that.items.filter((item) => item.username === value)[0])
+        this.internalValue = that.items.filter((item) => item.name === value)[0];
       }
     })
-    .dropdown('set selected', this.selected.username)
   },
   beforeDestroy: function () {
     $(this.$el).dropdown('destroy')

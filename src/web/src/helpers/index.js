@@ -40,7 +40,7 @@ const avatars = [
 export default {
   getNewMessage (user, content) {
     return {
-      author: user.username,
+      author: user.name,
       avatar: user.avatar,
       content: content,
       likers: [],
@@ -67,7 +67,7 @@ export default {
   getRandonUserList () {
     return Array.from({length: 5}, (v, i) => {
       return {
-      username: this.getRandomUserName(),
+      name: this.getRandomUserName(),
       avatar: this.getRandomAvatarUrl()
       }
     })

@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Channel from '@/components/Channel'
+import Channels from '@/components/Channels'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', name: 'Channel', component: Channel }
+    { path: '/', name: 'Channels', component: Channels }
   ]
 })
