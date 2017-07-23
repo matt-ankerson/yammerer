@@ -41,6 +41,10 @@ export default {
     created: function () {
         if (!this.isNew) this.messageContent = this.content
         if (this.text) this.defaultText = this.text
+        
+    },
+    mounted: function(){
+        this.$el.querySelector('textarea').focus()
     },
     methods: {
         hide: function () {
