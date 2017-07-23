@@ -15,16 +15,18 @@
       </div>
       <div class="text">
         {{model.content}}
-      </div>      
-      <div class="actions unset">
-        <a v-if="!showReplyForm" v-on:click.stop="toggleReplyForm" class="reply">Reply</a>
-        <a v-if="liked" v-on:click.stop="unlike" class="like active">You like this</a>
-        <a v-else-if="!currentUserOwnsComment" v-on:click.stop="like" class="like">Like</a>
       </div>
-      <div v-if="currentUserOwnsComment" class="actions">
-        <a v-if="!showEditForm" v-on:click.stop="toggleEditForm" class="like">Edit</a>
-        <a v-on:click.stop="remove" class="like">Delete</a>
-      </div>
+      <template v-if="currentUser">
+        <div class="actions unset">
+          <a v-if="!showReplyForm" v-on:click.stop="toggleReplyForm" class="reply">Reply</a>
+          <a v-if="liked" v-on:click.stop="unlike" class="like active">You like this</a>
+          <a v-else-if="!currentUserOwnsComment" v-on:click.stop="like" class="like">Like</a>
+        </div>
+        <div v-if="currentUserOwnsComment" class="actions">
+          <a v-if="!showEditForm" v-on:click.stop="toggleEditForm" class="like">Edit</a>
+          <a v-on:click.stop="remove" class="like">Delete</a>
+        </div>
+      </template>
     </div>
     <div v-if="hasReplies" class="comments">
       <message v-for="(message, index) in model.replies" :model="message" :channelId="channelId" :key="message.id" v-on:remove="removeReply(index)"></message>
@@ -80,17 +82,17 @@ export default {
       this.model.likes.push(this.currentUser.id)
     },
     unlike: async function () {
-      await messageStore.unlike(this.channelId, this.model.id, this.currentUser.id)      
+      await messageStore.unlike(this.channelId, this.model.id, this.currentUser.id)
       this.model.likes.splice(this.model.likes.indexOf(this.currentUser.id), 1)
     },
     toggleReplyForm: function () {
-      if(!this.showReplyForm){
+      if (!this.showReplyForm) {
         this.showEditForm = false
       }
       this.showReplyForm = !this.showReplyForm;
     },
     toggleEditForm: function () {
-      if(!this.showEditForm){
+      if (!this.showEditForm) {
         this.showReplyForm = false
       }
       this.showEditForm = !this.showEditForm

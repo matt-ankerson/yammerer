@@ -60,13 +60,13 @@ export default {
     initData: async function () {
       let users = await messageStore.getUsers()
       this.setUsers(users)
-      this.setUser(users[0])
+      // this.setUser(users[0])
       let channels = await messageStore.getPosts()
       channels.forEach((channel) => {
         this.channels.push(channel);
       })
     },
-    ...mapActions(['setUser', 'setUsers'])
+    ...mapActions(['setUsers'])
   },
   components: {
     'user-header': Header,
