@@ -90,9 +90,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                             <li>
                                 Featured as a rising star on GitHub - Vue has clocked over twice as many stars as Angular 2
                             </li>
-                            <li>
-                                89% developer satisfaction rating
-                            </li>
                         </ul>
                     </aside>
                 </section>
@@ -109,13 +106,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                                 when Angular 1.3 works just fine for me?
                             </li>
                             <li>
-                                The answer is yes, it's totally worth it. Front-end is the part that users touch
-                                and feel. It's the most important.
-                            </li>
-                            <li>Users are our consumers. Their demands are ever increasing.</li>
-                            <li>
                                 Users want snappy controls and more fluid interactions.
-                                They want the new browser features like camera access and web RTC.
                             </li>
                             <li>
                                 Implementing an ultra modern user experience is 100x easier with an ultra modern framework.
@@ -136,9 +127,31 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                 </section>
 
                 <section>
-                    <h2>Key characteristics</h2>
+                    <h2>Why is Vue so popular?</h2>
+                    <small>https://10clouds.com/blog/vuejs-angular-react/</small>
                     <ul>
-                        <li>Very easy to pick up</li>
+                        <li>Fast</li>
+                        <li>Reactive</li>
+                        <li>Well-documented</li>
+                        <li>Flexible and offers libraries</li>
+                        <li>Utilises ES6 features</li>
+                        <li>Reliable project generator</li>
+                        <li>Supports hot reloading</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Allegedly 2x faster than React</li>
+                            <li>The documentation is excellent</li>
+                            <li>Most important libraries are Vuex for state management and vue-router for routing your app</li>
+                            <li>It utilises ES6 features, Webpack, and a reliable CLI project generator</li>
+                        </ul>
+                    </aside>
+                </section>
+
+
+                <section>
+                    <h2>Design qualities</h2>
+                    <ul>
                         <li>Less opinionated</li>
                         <li>Incrementally adoptable</li>
                         <li>Fast and light</li>
@@ -148,8 +161,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                     <aside class="notes">
                         <ul>
                             <li>
-                                Approachable. Vue JS is just Javascript. There are no weird constructs, it's just JS objects
+                                Vue is approachable. Vue JS is just Javascript. There are no weird constructs or observables, it's just JS objects
                                 all the way down. When you deal with Vue, you're just writing plain old JS.
+                                Everything is observable.
                             </li>
                             <li>
                                 For this reason, Vue is super easy to learn. Documentation states about
@@ -168,7 +182,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                     </aside>
                 </section>
                 <section>
-                    <h2>Features</h2>
+                    <h2>Featuring:</h2>
                     <ul>
                         <li>Fast virtual DOM</li>
                         <li>Compose with components</li>
@@ -176,7 +190,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                         <li>Recursive components</li>
                         <li>Typescript, if you want</li>
                         <li>CLI project generator</li>
-                        <li>Browser plugin</li>
+                        <li>Dev tooling for your browser</li>
                     </ul>
 
                     <aside class="notes">
@@ -208,41 +222,92 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
                 </section>
 
                 <section>
-                    <h2>Killer Features</h2>
+                    <h2>The best parts</h2>
                     <ul>
                         <li>Simple</li>
                         <li>Easy to learn</li>
+                        <li>Nice developer UX</li>
                     </ul>
 
                     <aside class="notes">
                         <ul>
                             <li>Again, Vue JS is just Javascript</li>
+                            <li>All your of data is observable</li>
                             <li>It's easy and less opinionated about how your app should look</li>
                             <li>Simple examples in the documentation actually hold up when you use them in anger</li>
+                            <li>89% developer satisfaction rating</li>
                         </ul>
                     </aside>
                 </section>
 
                 <section>
-                    <p>Demo</p>
 
-                    <aside class="notes">
-                        <p>Let's have a look at an actual Vue application</p>
-                        <p>I want to show you:</p>
-                        <ul>
-                            <li>Creating a new Vue app with the cli tool</li>
-                            <li>Single file components</li>
-                            <li>The HTML template</li>
-                            <li>Using the component's <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">lifecycle hooks</a> (beforeCreate, created, beforeMount, mounted, beforeUpdate, updated, beforeDestroy, destroyed)</li>
-                            <li>Using the component's data building blocks (data, computed, methods)</li>
-                            <li>The browser plugin for Vue</li>
-                        </ul>
-                    </aside>
+                    <section>
+                        <p>Demo</p>
+                        <small>
+                            <ul style="list-style-type:none">
+                                <li><a href="http://ankerson.nz/yammerer" target="_blank">http://ankerson.nz/yammerer</a></li>
+                                <li>&nbsp;</li>
+                                <li><a href="https://newsfeed.fb.com/?lang=en" target="_blank">Facebook news feed</a></li>
+                                <li>Migration Assistant query builder</li>
+                                <li>Vue SPA</li>
+                            </ul>
+                        </small>
+
+                        <aside class="notes">
+                            <p>Let's have a look at a couple actual Vue applications</p>
+                            <p>I want to show you:</p>
+                            <ul>
+                                <li>Yammerer</li>
+                                <li>FB News feed</li>
+                                <li>
+                                    Migration Assistant query builder
+                                    <ul>
+                                        <li><code>cd C:\source\vue_query_builder</code></li>
+                                        <li><code>http-server</code></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Routing in a Single Page App
+                                    <ul>
+                                        <li><code>code C:\source\repos\electrocheck</code></li>
+                                        <li><code>Inspect vue-router code</code></li>
+                                        <li><code>Look at router links</code></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Creating a new Vue app with the cli tool
+                                    <ul>
+                                        <li><code>npm install --global vue-cli</code></li>
+                                        <li><code>vue init webpack my-project</code></li>
+                                        <li><code>cd my-project</code></li>
+                                        <li><code>npm install</code></li>
+                                        <li><code>npm run dev</code></li>
+                                    </ul>
+                                </li>
+                                <li>Single file components</li>
+                                <li>The HTML template</li>
+                                <li>
+                                    Using the component's <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">lifecycle hooks</a>
+                                    <code>(beforeCreate, created, beforeMount, mounted, beforeUpdate, updated, beforeDestroy, destroyed)</code>
+                                </li>
+                                <li>
+                                    Using the component's data building blocks (data, computed, methods)
+                                    <ul>
+                                        <li><code>Create a counter with data and a method.</code></li>
+                                        <li><code>Use a computed prop to get a sum.</code></li>
+                                    </ul>
+                                </li>
+                                <li>The browser plugin for Vue</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <a href="https://semantic-ui.com" target="_blank">Semantic UI</a>
+                    </section>
                 </section>
 
-                <section>
-                    <a href="https://semantic-ui.com" target="_blank">Semantic UI</>
-                </section>
 
             </div>
 
