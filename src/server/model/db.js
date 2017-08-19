@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const debug = require('debug')('dbconnection')
-const config = require('../config/environment')
+const config = require('../config')
 const user = require('./user')
 const post = require('./post')
 module.exports = function(onConnected) {

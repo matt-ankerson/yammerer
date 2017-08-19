@@ -23,7 +23,7 @@ const transformToTree = function(comments) {
 
 export default {
   async getUsers() {
-    let response = await axios.get('https://localhost/users')
+    let response = await axios.get('http://localhost:9000/users')
     return response.data.map(u => {
       return {
         id: u._id,
@@ -33,7 +33,7 @@ export default {
     })
   },
   async getPosts() {
-    let response = await axios.get('https://localhost/posts/latest')
+    let response = await axios.get('http://localhost:9000/posts/latest')
     
     response.data.forEach((doc) => {
       doc.message = transformToTree(doc.comments)[0]
@@ -46,7 +46,7 @@ export default {
     return response.data
   },
   async sendMessage(documentId, postId, content, userId) {
-    let response = await axios.post('https://localhost/posts/', {
+    let response = await axios.post('http://localhost:9000/posts/', {
       documentId: documentId,
       postId: postId,
       userId: userId,
@@ -55,21 +55,21 @@ export default {
     return response.data
   },
   async update(documentId, postId, content, userId) {
-    await axios.put('https://localhost/posts/' + documentId + '/' + postId, {
+    await axios.put('http://localhost:9000/posts/' + documentId + '/' + postId, {
       userId: userId,
       content: content
     })
   },
   async remove(documentId, postId, userId) {
-    await axios.delete('https://localhost/posts/' + documentId + '/' + postId + '/' + userId)
+    await axios.delete('http://localhost:9000/posts/' + documentId + '/' + postId + '/' + userId)
   },
   async like(documentId, postId, userId) {
-    await axios.put('https://localhost/posts/' + documentId + '/' + postId + '/like', {
+    await axios.put('http://localhost:9000/posts/' + documentId + '/' + postId + '/like', {
       userId: userId
     })
   },
   async unlike(documentId, postId, userId) {
-    await axios.put('https://localhost/posts/' + documentId + '/' + postId + '/unlike', {
+    await axios.put('http://localhost:9000/posts/' + documentId + '/' + postId + '/unlike', {
       userId: userId
     })
   },

@@ -3,7 +3,7 @@ const morgan = require('koa-morgan');
 const path = require('path');
 const rfs = require('rotating-file-stream');
 const logger = require('koa-logger');
-const config = require('./environment');
+const config = require('.');
 
 module.exports = function() {
     // In dev, add console logging
